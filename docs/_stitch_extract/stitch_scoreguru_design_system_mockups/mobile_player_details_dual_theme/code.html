@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ScoreGuru - Player Details</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error": "#690005",
+                      "inverse-surface": "#dce2f7",
+                      "secondary-fixed": "#ffdbca",
+                      "surface-container-high": "#232a3a",
+                      "on-surface": "#dce2f7",
+                      "surface": "#0c1322",
+                      "on-secondary-container": "#4a1c00",
+                      "surface-dim": "#0c1322",
+                      "secondary-fixed-dim": "#ffb690",
+                      "tertiary-fixed-dim": "#f7be1d",
+                      "error-container": "#93000a",
+                      "on-primary-fixed": "#2c0051",
+                      "secondary": "#ffb690",
+                      "surface-bright": "#323949",
+                      "tertiary-fixed": "#ffdf9a",
+                      "inverse-on-surface": "#293040",
+                      "primary-container": "#9333ea",
+                      "outline": "#988ca0",
+                      "surface-container-highest": "#2e3545",
+                      "outline-variant": "#4d4354",
+                      "tertiary-container": "#866500",
+                      "background": "#0c1322",
+                      "on-primary-fixed-variant": "#6800b4",
+                      "inverse-primary": "#861fdd",
+                      "on-primary-container": "#f6e6ff",
+                      "on-tertiary-fixed": "#251a00",
+                      "on-background": "#dce2f7",
+                      "on-surface-variant": "#cfc2d7",
+                      "tertiary": "#f7be1d",
+                      "on-primary": "#490080",
+                      "surface-tint": "#ddb8ff",
+                      "on-tertiary-fixed-variant": "#5a4300",
+                      "on-error-container": "#ffdad6",
+                      "primary-fixed-dim": "#ddb8ff",
+                      "on-secondary": "#552100",
+                      "on-tertiary": "#3f2e00",
+                      "error": "#ffb4ab",
+                      "surface-container-lowest": "#070e1d",
+                      "on-secondary-fixed-variant": "#783200",
+                      "primary-fixed": "#f0dbff",
+                      "on-tertiary-container": "#ffe9bf",
+                      "surface-container": "#191f2f",
+                      "surface-variant": "#2e3545",
+                      "surface-container-low": "#141b2b",
+                      "primary": "#ddb8ff",
+                      "secondary-container": "#ec6a06",
+                      "on-secondary-fixed": "#341100"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "xl": "32px",
+                      "container-max": "1280px",
+                      "xs": "4px",
+                      "base": "4px",
+                      "gutter": "16px",
+                      "lg": "24px",
+                      "md": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "data-table": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "data-table": [
+                              "13px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        /* Base material symbol class requirement */
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Sub-page Header (Custom for detail view context) -->
+<header class="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant h-16 flex items-center justify-between px-md">
+<button aria-label="Go back" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors text-on-surface">
+<span class="material-symbols-outlined" data-icon="arrow_back_ios_new">arrow_back_ios_new</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-surface truncate px-sm">Player Details</h1>
+<button aria-label="Favorite player" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors text-tertiary">
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</button>
+</header>
+<main class="flex-1 pb-xl">
+<!-- Hero Profile Section -->
+<section class="flex flex-col items-center pt-lg pb-md px-md">
+<div class="relative">
+<div class="w-24 h-24 rounded-full overflow-hidden border-2 border-primary bg-surface-container-highest">
+<img alt="Player Headshot" class="w-full h-full object-cover" data-alt="A striking portrait headshot of a professional male basketball player, tightly cropped. The lighting is dramatic and high-contrast, set against a deep black studio background. The player wears a dark purple and black sports jersey. The image embodies a modern, intense, sporty high-tech aesthetic suitable for a premium dark-mode sports application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZKm6tEhZQI2jPKFCsRIu8jUdDafw9V2j8Bl3qVsv8s5hGFEoci4xyfOYyOyTdhAaIcdFVu2ZJ9876GmW50vYWewpbbPddyojQYyHoYgdKE41JDsiA7aZNt9dbxJJc2XWke-OjgaIPEhW_NdzorjS5IOKznRkwFz0gD5j-u9-IgAkBG3W-0tPrvPAwp1HeZvt2SHI_MkzIx_6kd819CpPz8ZOtxIa_wFOJ22dCjWxcnpruqcO1rZkTEdlZ07-V-L-kRVQfYoIyAik"/>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-secondary-container text-on-surface font-label-caps text-label-caps px-2 py-1 rounded-full border border-outline-variant shadow-lg flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-on-surface animate-pulse"></span>
+                    LIVE
+                </div>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mt-md text-center">Marcus Sterling</h2>
+<p class="font-body-md text-body-md text-on-surface-variant text-center mt-xs">Point Guard • Phoenix Vipers</p>
+<div class="flex flex-wrap justify-center gap-sm mt-md">
+<span class="bg-surface-container border border-outline-variant text-on-surface font-label-caps text-label-caps px-sm py-xs rounded-full">#04</span>
+<span class="bg-surface-container border border-outline-variant text-on-surface font-label-caps text-label-caps px-sm py-xs rounded-full">6' 2"</span>
+<span class="bg-surface-container border border-outline-variant text-on-surface font-label-caps text-label-caps px-sm py-xs rounded-full">195 lbs</span>
+<span class="bg-surface-container border border-outline-variant text-on-surface font-label-caps text-label-caps px-sm py-xs rounded-full">Age 26</span>
+</div>
+</section>
+<!-- Key Metrics (Bento Grid) -->
+<section class="px-md mt-md">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-sm uppercase tracking-wider">Season Averages</h3>
+<div class="grid grid-cols-2 gap-sm">
+<!-- Primary Metric Card -->
+<div class="col-span-2 bg-surface-container border border-outline-variant rounded-lg p-md flex items-center justify-between relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary-container/20 to-transparent pointer-events-none"></div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Points Per Game</p>
+<p class="font-display text-display text-primary mt-xs">28.4</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="flex items-center text-tertiary-fixed-dim font-label-caps text-label-caps gap-xs bg-surface-container-highest px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up">trending_up</span> +2.1
+                        </span>
+<p class="font-data-table text-data-table text-on-surface-variant mt-sm">League Rank: #3</p>
+</div>
+</div>
+<!-- Secondary Metric Cards -->
+<div class="bg-surface-container border border-outline-variant rounded-lg p-md flex flex-col justify-between">
+<p class="font-label-caps text-label-caps text-on-surface-variant">Assists (APG)</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mt-sm">9.2</p>
+</div>
+<div class="bg-surface-container border border-outline-variant rounded-lg p-md flex flex-col justify-between">
+<p class="font-label-caps text-label-caps text-on-surface-variant">Rebounds (RPG)</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mt-sm">5.1</p>
+</div>
+</div>
+</section>
+<!-- Recent Form (Horizontal Scroll) -->
+<section class="mt-lg">
+<div class="px-md flex justify-between items-end mb-sm">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Recent Form</h3>
+<a class="font-body-md text-body-md text-primary flex items-center gap-xs" href="#">All <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span></a>
+</div>
+<div class="flex overflow-x-auto gap-sm px-md pb-sm snap-x hide-scrollbar">
+<!-- Game Card 1 -->
+<div class="min-w-[140px] snap-center bg-surface-container border border-outline-variant rounded-lg p-sm flex flex-col">
+<div class="flex justify-between items-center border-b border-outline-variant pb-xs mb-xs">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Nov 12</span>
+<span class="font-label-caps text-label-caps text-tertiary">W</span>
+</div>
+<div class="flex items-center gap-sm my-xs">
+<div class="w-6 h-6 rounded-full bg-surface-bright flex items-center justify-center font-label-caps text-[10px]">LAL</div>
+<span class="font-body-md text-body-md text-on-surface">@ LAL</span>
+</div>
+<div class="mt-auto pt-sm flex justify-between items-baseline">
+<span class="font-headline-md text-headline-md text-primary">32</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">PTS</span>
+</div>
+</div>
+<!-- Game Card 2 -->
+<div class="min-w-[140px] snap-center bg-surface-container border border-outline-variant rounded-lg p-sm flex flex-col">
+<div class="flex justify-between items-center border-b border-outline-variant pb-xs mb-xs">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Nov 10</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">L</span>
+</div>
+<div class="flex items-center gap-sm my-xs">
+<div class="w-6 h-6 rounded-full bg-surface-bright flex items-center justify-center font-label-caps text-[10px]">GSW</div>
+<span class="font-body-md text-body-md text-on-surface">vs GSW</span>
+</div>
+<div class="mt-auto pt-sm flex justify-between items-baseline">
+<span class="font-headline-md text-headline-md text-on-surface">24</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">PTS</span>
+</div>
+</div>
+<!-- Game Card 3 -->
+<div class="min-w-[140px] snap-center bg-surface-container border border-outline-variant rounded-lg p-sm flex flex-col">
+<div class="flex justify-between items-center border-b border-outline-variant pb-xs mb-xs">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Nov 08</span>
+<span class="font-label-caps text-label-caps text-tertiary">W</span>
+</div>
+<div class="flex items-center gap-sm my-xs">
+<div class="w-6 h-6 rounded-full bg-surface-bright flex items-center justify-center font-label-caps text-[10px]">MIA</div>
+<span class="font-body-md text-body-md text-on-surface">@ MIA</span>
+</div>
+<div class="mt-auto pt-sm flex justify-between items-baseline">
+<span class="font-headline-md text-headline-md text-on-surface">27</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">PTS</span>
+</div>
+</div>
+</div>
+<!-- Custom scrollbar hiding for cleaner mobile view -->
+<style>
+                .hide-scrollbar::-webkit-scrollbar { display: none; }
+                .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+            </style>
+</section>
+<!-- Career Summary Data Table -->
+<section class="px-md mt-lg">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-sm uppercase tracking-wider">Career Overview</h3>
+<div class="bg-surface-container border border-outline-variant rounded-lg overflow-hidden">
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left font-data-table text-data-table whitespace-nowrap">
+<thead class="bg-surface-container-highest border-b border-outline-variant">
+<tr>
+<th class="px-sm py-xs font-label-caps text-label-caps text-on-surface-variant font-medium">Year</th>
+<th class="px-sm py-xs font-label-caps text-label-caps text-on-surface-variant font-medium">Team</th>
+<th class="px-sm py-xs font-label-caps text-label-caps text-on-surface-variant font-medium text-right">GP</th>
+<th class="px-sm py-xs font-label-caps text-label-caps text-on-surface-variant font-medium text-right">PTS</th>
+<th class="px-sm py-xs font-label-caps text-label-caps text-on-surface-variant font-medium text-right">AST</th>
+<th class="px-sm py-xs font-label-caps text-label-caps text-on-surface-variant font-medium text-right">FG%</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/50">
+<tr class="hover:bg-surface-variant transition-colors">
+<td class="px-sm py-xs text-on-surface">2023-24</td>
+<td class="px-sm py-xs text-on-surface">PHX</td>
+<td class="px-sm py-xs text-on-surface-variant text-right">68</td>
+<td class="px-sm py-xs text-primary font-bold text-right">26.2</td>
+<td class="px-sm py-xs text-on-surface-variant text-right">8.9</td>
+<td class="px-sm py-xs text-on-surface-variant text-right">48.1</td>
+</tr>
+<tr class="hover:bg-surface-variant transition-colors">
+<td class="px-sm py-xs text-on-surface">2022-23</td>
+<td class="px-sm py-xs text-on-surface">PHX</td>
+<td class="px-sm py-xs text-on-surface-variant text-right">74</td>
+<td class="px-sm py-xs text-on-surface text-right">24.5</td>
+<td class="px-sm py-xs text-on-surface-variant text-right">8.1</td>
+<td class="px-sm py-xs text-on-surface-variant text-right">46.5</td>
+</tr>
+<tr class="hover:bg-surface-variant transition-colors">
+<td class="px-sm py-xs text-on-surface">2021-22</td>
+<td class="px-sm py-xs text-on-surface">PHX</td>
+<td class="px-sm py-xs text-on-surface-variant text-right">80</td>
+<td class="px-sm py-xs text-on-surface text-right">21.8</td>
+<td class="px-sm py-xs text-on-surface-variant text-right">7.5</td>
+<td class="px-sm py-xs text-on-surface-variant text-right">45.2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</main>
+</body></html>

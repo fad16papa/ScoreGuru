@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ScoreGuru - League Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error": "#690005",
+                      "inverse-surface": "#dce2f7",
+                      "secondary-fixed": "#ffdbca",
+                      "surface-container-high": "#232a3a",
+                      "on-surface": "#dce2f7",
+                      "surface": "#0c1322",
+                      "on-secondary-container": "#4a1c00",
+                      "surface-dim": "#0c1322",
+                      "secondary-fixed-dim": "#ffb690",
+                      "tertiary-fixed-dim": "#f7be1d",
+                      "error-container": "#93000a",
+                      "on-primary-fixed": "#2c0051",
+                      "secondary": "#ffb690",
+                      "surface-bright": "#323949",
+                      "tertiary-fixed": "#ffdf9a",
+                      "inverse-on-surface": "#293040",
+                      "primary-container": "#9333ea",
+                      "outline": "#988ca0",
+                      "surface-container-highest": "#2e3545",
+                      "outline-variant": "#4d4354",
+                      "tertiary-container": "#866500",
+                      "background": "#0c1322",
+                      "on-primary-fixed-variant": "#6800b4",
+                      "inverse-primary": "#861fdd",
+                      "on-primary-container": "#f6e6ff",
+                      "on-tertiary-fixed": "#251a00",
+                      "on-background": "#dce2f7",
+                      "on-surface-variant": "#cfc2d7",
+                      "tertiary": "#f7be1d",
+                      "on-primary": "#490080",
+                      "surface-tint": "#ddb8ff",
+                      "on-tertiary-fixed-variant": "#5a4300",
+                      "on-error-container": "#ffdad6",
+                      "primary-fixed-dim": "#ddb8ff",
+                      "on-secondary": "#552100",
+                      "on-tertiary": "#3f2e00",
+                      "error": "#ffb4ab",
+                      "surface-container-lowest": "#070e1d",
+                      "on-secondary-fixed-variant": "#783200",
+                      "primary-fixed": "#f0dbff",
+                      "on-tertiary-container": "#ffe9bf",
+                      "surface-container": "#191f2f",
+                      "surface-variant": "#2e3545",
+                      "surface-container-low": "#141b2b",
+                      "primary": "#ddb8ff",
+                      "secondary-container": "#ec6a06",
+                      "on-secondary-fixed": "#341100"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "xl": "32px",
+                      "container-max": "1280px",
+                      "xs": "4px",
+                      "base": "4px",
+                      "gutter": "16px",
+                      "lg": "24px",
+                      "md": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "data-table": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "data-table": [
+                              "13px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md text-body-md selection:bg-primary selection:text-on-primary pb-20">
+<!-- Top App Bar -->
+<header class="bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant flex justify-between items-center w-full px-xl h-16 sticky top-0 z-40">
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-full p-2">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-extrabold text-primary dark:text-primary">ScoreGuru</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full scale-95 duration-100">
+<span class="material-symbols-outlined">calendar_today</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full scale-95 duration-100">
+<span class="material-symbols-outlined">contrast</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full scale-95 duration-100 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+</div>
+</header>
+<main class="flex-1 flex flex-col w-full max-w-container-max mx-auto p-md gap-lg">
+<!-- League Header -->
+<section class="flex flex-col gap-md">
+<div class="flex items-center gap-md bg-surface-container p-md rounded-xl border border-outline-variant">
+<div class="w-16 h-16 rounded-full bg-surface-variant flex items-center justify-center shrink-0 border border-outline-variant">
+<span class="material-symbols-outlined text-[32px] text-primary">emoji_events</span>
+</div>
+<div class="flex flex-col flex-1">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Premier League</h2>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">public</span> England
+                    </p>
+</div>
+<button class="text-primary hover:bg-surface-variant p-2 rounded-full transition-colors border border-outline-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</button>
+</div>
+<!-- Season Selector -->
+<div class="flex overflow-x-auto gap-sm pb-sm hide-scrollbar">
+<button class="bg-primary-container text-on-primary-container font-label-caps text-label-caps px-4 py-2 rounded-full whitespace-nowrap border border-primary">2023/24</button>
+<button class="bg-surface text-on-surface-variant font-label-caps text-label-caps px-4 py-2 rounded-full whitespace-nowrap border border-outline-variant hover:bg-surface-variant transition-colors">2022/23</button>
+<button class="bg-surface text-on-surface-variant font-label-caps text-label-caps px-4 py-2 rounded-full whitespace-nowrap border border-outline-variant hover:bg-surface-variant transition-colors">2021/22</button>
+</div>
+</section>
+<!-- Live Matches -->
+<section class="flex flex-col gap-sm">
+<div class="flex justify-between items-center px-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-sm">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
+                    Live Now
+                </h3>
+</div>
+<div class="flex overflow-x-auto gap-md pb-md snap-x snap-mandatory">
+<!-- Match Card 1 -->
+<div class="snap-center shrink-0 w-[280px] bg-surface-container border border-outline-variant rounded-xl p-md flex flex-col gap-sm">
+<div class="flex justify-between items-center border-b border-outline-variant pb-sm">
+<span class="font-label-caps text-label-caps text-secondary-container">78'</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Matchday 24</span>
+</div>
+<div class="flex flex-col gap-sm">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-surface-variant border border-outline-variant"></div>
+<span class="font-body-lg text-body-lg text-on-surface">ARS</span>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface">2</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-surface-variant border border-outline-variant"></div>
+<span class="font-body-lg text-body-lg text-on-surface">LIV</span>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface">1</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="bg-surface dark:bg-surface-container-low border-t border-outline-variant dark:border-outline-variant fixed bottom-0 left-0 w-full flex justify-around items-center px-gutter py-base h-16 md:hidden z-50 shadow-lg">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest rounded-lg p-1" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest rounded-lg p-1" href="#">
+<span class="material-symbols-outlined">sensors</span>
+<span class="font-label-caps text-label-caps mt-1">Live</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary bg-secondary-container/20 rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="font-label-caps text-label-caps mt-1">Leagues</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest rounded-lg p-1" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-caps text-label-caps mt-1">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest rounded-lg p-1" href="#">
+<span class="material-symbols-outlined">grade</span>
+<span class="font-label-caps text-label-caps mt-1">Favs</span>
+</a>
+</nav>
+</body></html>

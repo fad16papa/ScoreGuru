@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Arsenal vs Chelsea - Live Scores</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;600;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#684e00",
+                        "tertiary-container": "#866500",
+                        "background": "#f9f9ff",
+                        "secondary": "#9d4300",
+                        "on-surface": "#141b2b",
+                        "primary-container": "#9333ea",
+                        "outline-variant": "#cfc2d7",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#4d4354",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-tertiary-container": "#ffe9bf",
+                        "surface-bright": "#f9f9ff",
+                        "surface-container-high": "#e1e8fd",
+                        "primary-fixed-dim": "#ddb8ff",
+                        "inverse-primary": "#ddb8ff",
+                        "surface-container-highest": "#dce2f7",
+                        "surface-variant": "#dce2f7",
+                        "primary-fixed": "#f0dbff",
+                        "surface": "#f9f9ff",
+                        "on-secondary-container": "#5c2400",
+                        "on-tertiary-fixed": "#251a00",
+                        "on-secondary-fixed": "#341100",
+                        "on-primary-fixed": "#2c0051",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#ffdf9a",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f1f3ff",
+                        "on-secondary-fixed-variant": "#783200",
+                        "on-primary-container": "#f6e6ff",
+                        "surface-dim": "#d3daef",
+                        "on-tertiary-fixed-variant": "#5a4300",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#6800b4",
+                        "secondary-fixed-dim": "#ffb690",
+                        "outline": "#7e7386",
+                        "primary": "#7800ce",
+                        "secondary-container": "#fd761a",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#293040",
+                        "surface-container": "#e9edff",
+                        "secondary-fixed": "#ffdbca",
+                        "surface-tint": "#861fdd",
+                        "tertiary-fixed-dim": "#f7be1d",
+                        "on-background": "#141b2b",
+                        "arsenal": "#EF0107",
+                        "chelsea": "#034694"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "base": "4px",
+                        "2xl": "48px",
+                        "lg": "24px",
+                        "margin-desktop": "32px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "gutter": "20px",
+                        "xl": "32px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Archivo Narrow"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg-mobile": ["Archivo Narrow"],
+                        "display": ["Archivo Narrow"],
+                        "headline-md": ["Archivo Narrow"],
+                        "body-md": ["Inter"],
+                        "label-data": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-data": ["13px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #F6F7FB; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#F6F7FB] text-on-surface font-body-sm pb-24 md:pb-8 flex justify-center">
+<div class="w-full max-w-md bg-[#F6F7FB] min-h-screen relative shadow-2xl overflow-hidden flex flex-col">
+<!-- TopAppBar (ScoreGuru) -->
+<header class="bg-surface text-primary font-headline-md text-headline-md flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16 sticky top-0 z-50 shadow-sm">
+<div class="flex items-center gap-sm">
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+</div>
+<div class="font-headline-md text-headline-md font-bold text-primary tracking-tight">ScoreGuru</div>
+<div class="flex items-center gap-2">
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<img alt="User avatar" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A small circular avatar placeholder image showing a person's head and shoulders. The style is generic and professional, fitting for a user profile picture in a sleek, modern sports app dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZG3L_edb8myclGmyxdPRHNXDO46yKAdiNnOBrxf0hb4hZJEu1Z2qP7GRDDBciof_V-Eev9WQicwho4otZXJDzdMT2meoKt7BeMPQjTrxQQvh9N2RZScpoZ2HE31oV8fvzHXn3Iw8zCd6N-EmMhTjzgqIc3zYcpxuB436xRkR4ICT-4nYmfNiGdNorVbOJ_qoTyZLqJE6Ck8_mHnL7k_01oPPEs5-62ccKx7ZsghwHWk_Q_ydbYUTPwiMohFSVwTRk4EvDPySP2fU"/>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto">
+<!-- Hero Scoreboard -->
+<section class="bg-surface px-margin-mobile pt-lg pb-md border-b border-outline-variant/30 flex flex-col items-center shadow-sm relative overflow-hidden">
+<div class="absolute top-2 right-4 flex items-center gap-xs bg-secondary-container/10 px-2 py-1 rounded-full border border-secondary-container/20">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
+<span class="text-secondary-container font-label-data text-label-data text-xs font-bold uppercase tracking-wider">Live 72'</span>
+</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm mb-lg text-center uppercase tracking-widest text-xs font-medium">Premier League • Matchday 24</div>
+<div class="flex w-full items-center justify-between px-md">
+<!-- Home Team -->
+<div class="flex flex-col items-center flex-1">
+<img alt="Arsenal Logo" class="w-16 h-16 rounded-full shadow-sm mb-xs border-2 border-[#EF0107] object-cover" data-alt="A stylized, modern rendering of a crest or shield reminiscent of a classic football club logo, specifically in vibrant red and white tones similar to Arsenal FC. The design should be clean, flat, and high-contrast, fitting perfectly within a light-mode corporate sports interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4aTIvVdLNZkf7bsA5aKllfUt7v9zIdh16zqmjmUkk7T9EKHJy99iarrVbJ452RvvLQGNTlzIsAHcSicruaK3ECWhNs6f09ASBb52nUGAVlrwSt4hGAql_Z94US-GaEOxddGHZS0-Q9xs-qSrsjyEYJkFZ2wjgdu7DL5L4JJlid2fd1_ZniP8m-S5rl5z5afYY98xbP2yWOGYlULKFi1yMelA41ioZN53A6UXi5Q0C-PDT6bQOrJVqvslrC57c4CbpU8kerJnfc8w"/>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-sm">ARS</span>
+<span class="font-label-data text-label-data text-xs text-on-surface-variant">Home</span>
+</div>
+<!-- Score -->
+<div class="flex flex-col items-center flex-1">
+<div class="font-display text-display font-bold text-on-surface flex items-center justify-center gap-xs">
+<span class="text-[#EF0107]">2</span>
+<span class="text-outline-variant font-light text-3xl">-</span>
+<span>1</span>
+</div>
+</div>
+<!-- Away Team -->
+<div class="flex flex-col items-center flex-1">
+<img alt="Chelsea Logo" class="w-16 h-16 rounded-full shadow-sm mb-xs border border-outline-variant object-cover" data-alt="A stylized, modern rendering of a crest or shield reminiscent of a classic football club logo, specifically in deep royal blue and white tones similar to Chelsea FC. The design should be clean, flat, and high-contrast, fitting perfectly within a light-mode corporate sports interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeknEA3_s8eguFLYIs8dpZ5KcwlwRbYgVuqdF5-72Yl8UHjyzjrgzi8Fd7OCmrHx45HnMIk86dFQ04dpFhigd9CiW2sRRv192RCmYSdvaaCScTWiJMnCK7pj0gATEdsCe0Pz2ompvQwUvomtSsFWKPdqdEkvDPF3o_dFP7gy0r-hiacYRenS4PKUslOJgdeHi6b8HXiXxjrv0877tQp-QqsRUfcc-xnckxQGdUAuXT5bhM1TGwMfef5fczE1b53ZlLH47ppPOx3pU"/>
+<span class="font-headline-md text-headline-md font-bold text-on-surface mt-sm">CHE</span>
+<span class="font-label-data text-label-data text-xs text-on-surface-variant">Away</span>
+</div>
+</div>
+<div class="mt-md text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Saka 24', Odegaard 51' (ARS)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Palmer 68' (CHE)</p>
+</div>
+</section>
+<!-- Tabs -->
+<div class="bg-surface sticky top-0 z-40 border-b border-outline-variant/30 flex px-margin-mobile overflow-x-auto hide-scrollbar shadow-sm">
+<button class="font-body-md text-body-md font-medium text-primary border-b-2 border-primary pb-3 pt-4 px-4 whitespace-nowrap active:opacity-80 transition-opacity">Summary</button>
+<button class="font-body-md text-body-md text-on-surface-variant pb-3 pt-4 px-4 whitespace-nowrap hover:bg-surface-container-low transition-colors">Live</button>
+<button class="font-body-md text-body-md text-on-surface-variant pb-3 pt-4 px-4 whitespace-nowrap hover:bg-surface-container-low transition-colors">Stats</button>
+<button class="font-body-md text-body-md text-on-surface-variant pb-3 pt-4 px-4 whitespace-nowrap hover:bg-surface-container-low transition-colors">Lineups</button>
+<button class="font-body-md text-body-md text-on-surface-variant pb-3 pt-4 px-4 whitespace-nowrap hover:bg-surface-container-low transition-colors">Details</button>
+</div>
+<!-- Content Area -->
+<div class="p-margin-mobile flex flex-col gap-lg">
+<!-- Match Momentum -->
+<div class="bg-surface rounded-xl p-md shadow-sm border border-outline-variant/20">
+<h3 class="font-headline-md text-headline-md text-lg mb-sm">Match Momentum</h3>
+<div class="h-24 w-full flex items-end gap-[2px] relative pt-4">
+<!-- Center Line -->
+<div class="absolute top-1/2 left-0 w-full border-t border-dashed border-outline-variant/50 z-0"></div>
+<!-- Mock Bars Arsenal -->
+<div class="flex-1 bg-[#EF0107]/20 rounded-t-sm h-[40%] z-10 hover:bg-[#EF0107]/40 transition-colors cursor-pointer relative group"><div class="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 hidden group-hover:block bg-inverse-surface text-inverse-on-surface text-[10px] px-1 py-0.5 rounded font-label-data whitespace-nowrap">1-5'</div></div>
+<div class="flex-1 bg-[#EF0107]/60 rounded-t-sm h-[70%] z-10 hover:bg-[#EF0107]/80 transition-colors cursor-pointer relative group"><div class="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 hidden group-hover:block bg-inverse-surface text-inverse-on-surface text-[10px] px-1 py-0.5 rounded font-label-data whitespace-nowrap">6-10'</div></div>
+<div class="flex-1 bg-[#EF0107]/90 rounded-t-sm h-[100%] z-10 hover:bg-[#EF0107] transition-colors cursor-pointer relative group"><div class="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 hidden group-hover:block bg-inverse-surface text-inverse-on-surface text-[10px] px-1 py-0.5 rounded font-label-data whitespace-nowrap">11-15'</div></div>
+<div class="flex-1 bg-outline-variant/30 rounded-t-sm h-[20%] z-10"></div>
+<!-- Mock Bars Chelsea -->
+<div class="flex-1 bg-[#034694]/40 rounded-t-sm h-[50%] z-10 transform origin-bottom scale-y-[-1] mt-auto"></div>
+<div class="flex-1 bg-[#034694]/80 rounded-t-sm h-[90%] z-10 transform origin-bottom scale-y-[-1] mt-auto"></div>
+<div class="flex-1 bg-[#034694]/30 rounded-t-sm h-[30%] z-10 transform origin-bottom scale-y-[-1] mt-auto"></div>
+<!-- More Arsenal -->
+<div class="flex-1 bg-[#EF0107]/70 rounded-t-sm h-[80%] z-10 hover:bg-[#EF0107]/90 transition-colors cursor-pointer relative group"><div class="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 hidden group-hover:block bg-inverse-surface text-inverse-on-surface text-[10px] px-1 py-0.5 rounded font-label-data whitespace-nowrap">Goal 24'</div></div>
+<div class="flex-1 bg-[#EF0107]/40 rounded-t-sm h-[50%] z-10"></div>
+<div class="flex-1 bg-outline-variant/30 rounded-t-sm h-[10%] z-10"></div>
+<!-- More Chelsea -->
+<div class="flex-1 bg-[#034694]/90 rounded-t-sm h-[100%] z-10 transform origin-bottom scale-y-[-1] mt-auto"></div>
+<div class="flex-1 bg-[#034694]/50 rounded-t-sm h-[60%] z-10 transform origin-bottom scale-y-[-1] mt-auto"></div>
+</div>
+<div class="flex justify-between mt-xs font-label-data text-label-data text-[10px] text-on-surface-variant">
+<span>0'</span>
+<span>HT</span>
+<span>72'</span>
+</div>
+</div>
+<!-- Event Timeline -->
+<div class="bg-surface rounded-xl p-md shadow-sm border border-outline-variant/20">
+<h3 class="font-headline-md text-headline-md text-lg mb-md">Key Events</h3>
+<div class="flex flex-col relative">
+<!-- Vertical Line -->
+<div class="absolute left-1/2 top-2 bottom-2 w-px bg-outline-variant/30 -translate-x-1/2"></div>
+<!-- Event 1: Chelsea Goal -->
+<div class="flex items-center w-full mb-lg relative">
+<div class="w-1/2 pr-md text-right">
+<p class="font-headline-md text-headline-md text-base text-on-surface">C. Palmer</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs">Assist: E. Fernandez</p>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-surface border border-outline-variant shadow-sm flex items-center justify-center z-10">
+<span class="material-symbols-outlined filled text-secondary-container text-lg">sports_soccer</span>
+</div>
+<div class="w-1/2 pl-md flex items-center gap-xs">
+<span class="font-label-data text-label-data font-bold text-on-surface">68'</span>
+</div>
+</div>
+<!-- Event 2: Arsenal Goal -->
+<div class="flex items-center w-full mb-lg relative">
+<div class="w-1/2 pr-md flex items-center justify-end gap-xs">
+<span class="font-label-data text-label-data font-bold text-on-surface">51'</span>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-surface border border-outline-variant shadow-sm flex items-center justify-center z-10">
+<span class="material-symbols-outlined filled text-secondary-container text-lg">sports_soccer</span>
+</div>
+<div class="w-1/2 pl-md text-left">
+<p class="font-headline-md text-headline-md text-base text-on-surface">M. Odegaard</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs">Assist: D. Rice</p>
+</div>
+</div>
+<!-- Event 3: Yellow Card -->
+<div class="flex items-center w-full mb-lg relative">
+<div class="w-1/2 pr-md flex items-center justify-end gap-xs">
+<span class="font-label-data text-label-data font-bold text-on-surface">42'</span>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-surface border border-outline-variant shadow-sm flex items-center justify-center z-10">
+<div class="w-3 h-4 bg-tertiary-fixed-dim rounded-sm shadow-inner border border-tertiary/20 transform rotate-12"></div>
+</div>
+<div class="w-1/2 pl-md text-left">
+<p class="font-headline-md text-headline-md text-base text-on-surface">W. Saliba</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs">Foul</p>
+</div>
+</div>
+<!-- Event 4: Arsenal Goal -->
+<div class="flex items-center w-full relative">
+<div class="w-1/2 pr-md flex items-center justify-end gap-xs">
+<span class="font-label-data text-label-data font-bold text-on-surface">24'</span>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-surface border border-outline-variant shadow-sm flex items-center justify-center z-10">
+<span class="material-symbols-outlined filled text-secondary-container text-lg">sports_soccer</span>
+</div>
+<div class="w-1/2 pl-md text-left">
+<p class="font-headline-md text-headline-md text-base text-on-surface">B. Saka</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs">Penalty</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Team Stats Comparison -->
+<div class="bg-surface rounded-xl p-md shadow-sm border border-outline-variant/20 mb-md">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-lg">Team Stats</h3>
+<button class="font-body-sm text-body-sm text-primary font-medium flex items-center">
+                            See All <span class="material-symbols-outlined text-sm ml-1">chevron_right</span>
+</button>
+</div>
+<!-- Stat Row: Possession -->
+<div class="mb-sm">
+<div class="flex justify-between font-label-data text-label-data mb-xs text-xs">
+<span class="font-bold">58%</span>
+<span class="text-on-surface-variant uppercase tracking-wider text-[10px]">Possession</span>
+<span class="font-bold">42%</span>
+</div>
+<div class="flex h-2 w-full rounded-full overflow-hidden bg-surface-variant">
+<div class="bg-[#EF0107]" style="width: 58%"></div>
+<div class="bg-[#034694]" style="width: 42%"></div>
+</div>
+</div>
+<!-- Stat Row: Shots -->
+<div class="mb-sm">
+<div class="flex justify-between font-label-data text-label-data mb-xs text-xs">
+<span class="font-bold">14</span>
+<span class="text-on-surface-variant uppercase tracking-wider text-[10px]">Shots</span>
+<span class="font-bold">9</span>
+</div>
+<div class="flex h-2 w-full rounded-full overflow-hidden gap-1 bg-transparent">
+<div class="bg-surface-variant flex-1 flex justify-end overflow-hidden rounded-l-full">
+<div class="bg-[#EF0107] w-full" style="transform-origin: right; transform: scaleX(0.6)"></div>
+</div>
+<div class="bg-surface-variant flex-1 flex justify-start overflow-hidden rounded-r-full">
+<div class="bg-[#034694] w-full" style="transform-origin: left; transform: scaleX(0.4)"></div>
+</div>
+</div>
+</div>
+<!-- Stat Row: Shots on Target -->
+<div class="mb-sm">
+<div class="flex justify-between font-label-data text-label-data mb-xs text-xs">
+<span class="font-bold">6</span>
+<span class="text-on-surface-variant uppercase tracking-wider text-[10px]">On Target</span>
+<span class="font-bold">3</span>
+</div>
+<div class="flex h-2 w-full rounded-full overflow-hidden gap-1 bg-transparent">
+<div class="bg-surface-variant flex-1 flex justify-end overflow-hidden rounded-l-full">
+<div class="bg-[#EF0107] w-full" style="transform-origin: right; transform: scaleX(0.66)"></div>
+</div>
+<div class="bg-surface-variant flex-1 flex justify-start overflow-hidden rounded-r-full">
+<div class="bg-[#034694] w-full" style="transform-origin: left; transform: scaleX(0.33)"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-surface dark:bg-surface-container font-body-sm text-body-sm shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-16 border-t border-outline-variant/20 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1.5 active:bg-surface-container-highest transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1.5 active:bg-surface-container-highest transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined mb-1">sports_soccer</span>
+<span class="text-[10px] font-medium">Leagues</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-fixed-dim text-on-primary-container dark:text-on-primary-fixed rounded-xl px-4 py-1.5 scale-95 duration-100" href="#">
+<span class="material-symbols-outlined mb-1 filled">live_tv</span>
+<span class="text-[10px] font-bold">Live</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1.5 active:bg-surface-container-highest transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined mb-1">analytics</span>
+<span class="text-[10px] font-medium">Analysis</span>
+</a>
+</nav>
+</div>
+</body></html>

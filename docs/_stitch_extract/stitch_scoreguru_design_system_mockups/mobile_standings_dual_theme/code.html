@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ScoreGuru - Live Scores</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error": "#690005",
+                      "inverse-surface": "#dce2f7",
+                      "secondary-fixed": "#ffdbca",
+                      "surface-container-high": "#232a3a",
+                      "on-surface": "#dce2f7",
+                      "surface": "#0c1322",
+                      "on-secondary-container": "#4a1c00",
+                      "surface-dim": "#0c1322",
+                      "secondary-fixed-dim": "#ffb690",
+                      "tertiary-fixed-dim": "#f7be1d",
+                      "error-container": "#93000a",
+                      "on-primary-fixed": "#2c0051",
+                      "secondary": "#ffb690",
+                      "surface-bright": "#323949",
+                      "tertiary-fixed": "#ffdf9a",
+                      "inverse-on-surface": "#293040",
+                      "primary-container": "#9333ea",
+                      "outline": "#988ca0",
+                      "surface-container-highest": "#2e3545",
+                      "outline-variant": "#4d4354",
+                      "tertiary-container": "#866500",
+                      "background": "#0c1322",
+                      "on-primary-fixed-variant": "#6800b4",
+                      "inverse-primary": "#861fdd",
+                      "on-primary-container": "#f6e6ff",
+                      "on-tertiary-fixed": "#251a00",
+                      "on-background": "#dce2f7",
+                      "on-surface-variant": "#cfc2d7",
+                      "tertiary": "#f7be1d",
+                      "on-primary": "#490080",
+                      "surface-tint": "#ddb8ff",
+                      "on-tertiary-fixed-variant": "#5a4300",
+                      "on-error-container": "#ffdad6",
+                      "primary-fixed-dim": "#ddb8ff",
+                      "on-secondary": "#552100",
+                      "on-tertiary": "#3f2e00",
+                      "error": "#ffb4ab",
+                      "surface-container-lowest": "#070e1d",
+                      "on-secondary-fixed-variant": "#783200",
+                      "primary-fixed": "#f0dbff",
+                      "on-tertiary-container": "#ffe9bf",
+                      "surface-container": "#191f2f",
+                      "surface-variant": "#2e3545",
+                      "surface-container-low": "#141b2b",
+                      "primary": "#ddb8ff",
+                      "secondary-container": "#ec6a06",
+                      "on-secondary-fixed": "#341100"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "xl": "32px",
+                      "container-max": "1280px",
+                      "xs": "4px",
+                      "base": "4px",
+                      "gutter": "16px",
+                      "lg": "24px",
+                      "md": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "data-table": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "data-table": [
+                              "13px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col antialiased">
+<!-- TopAppBar Mobile -->
+<header class="md:hidden bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant flex justify-between items-center w-full px-md h-16 sticky top-0 z-40">
+<div class="font-headline-md text-headline-md font-extrabold text-primary dark:text-primary">ScoreGuru</div>
+<div class="flex items-center gap-sm">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-full">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pb-24 md:pb-0 overflow-hidden flex flex-col">
+<!-- League Header Context -->
+<div class="px-md py-md bg-surface-container border-b border-outline-variant shrink-0">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-variant border border-outline-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">emoji_events</span>
+</div>
+<div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile">Premier League</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">2023/24 Season</p>
+</div>
+</div>
+<div class="flex gap-sm mt-md overflow-x-auto pb-2 scrollbar-hide">
+<button class="px-4 py-2 bg-primary-container text-on-primary-container rounded-full font-label-caps text-label-caps whitespace-nowrap shrink-0">Overall</button>
+<button class="px-4 py-2 bg-surface-variant text-on-surface rounded-full font-label-caps text-label-caps whitespace-nowrap shrink-0 border border-outline-variant">Home</button>
+<button class="px-4 py-2 bg-surface-variant text-on-surface rounded-full font-label-caps text-label-caps whitespace-nowrap shrink-0 border border-outline-variant">Away</button>
+<button class="px-4 py-2 bg-surface-variant text-on-surface rounded-full font-label-caps text-label-caps whitespace-nowrap shrink-0 border border-outline-variant">Form</button>
+</div>
+</div>
+<!-- Standings Table Container -->
+<div class="flex-grow overflow-hidden relative">
+<div class="absolute inset-0 overflow-auto">
+<div class="inline-block min-w-full align-middle">
+<table class="min-w-full border-collapse">
+<!-- Sticky Header -->
+<thead class="sticky top-0 bg-surface-container-highest z-20 border-b border-outline-variant">
+<tr>
+<th class="sticky left-0 bg-surface-container-highest z-30 px-xs py-sm text-center font-label-caps text-label-caps text-on-surface-variant w-10 border-r border-outline-variant">#</th>
+<th class="sticky left-10 bg-surface-container-highest z-30 px-sm py-sm text-left font-label-caps text-label-caps text-on-surface-variant min-w-[140px] border-r border-outline-variant">Team</th>
+<th class="px-md py-sm text-center font-label-caps text-label-caps text-on-surface-variant w-12">P</th>
+<th class="px-md py-sm text-center font-label-caps text-label-caps text-on-surface-variant w-12">W</th>
+<th class="px-md py-sm text-center font-label-caps text-label-caps text-on-surface-variant w-12">D</th>
+<th class="px-md py-sm text-center font-label-caps text-label-caps text-on-surface-variant w-12">L</th>
+<th class="px-md py-sm text-center font-label-caps text-label-caps text-on-surface-variant w-14">GF</th>
+<th class="px-md py-sm text-center font-label-caps text-label-caps text-on-surface-variant w-14">GA</th>
+<th class="px-md py-sm text-center font-label-caps text-label-caps text-on-surface-variant w-14">GD</th>
+<th class="px-md py-sm text-center font-label-caps text-label-caps text-on-surface-variant w-14 bg-surface-variant text-primary border-l border-outline-variant">Pts</th>
+</tr>
+</thead>
+<tbody class="font-data-table text-data-table divide-y divide-outline-variant">
+<!-- Row 1 (Champions League) -->
+<tr class="bg-surface hover:bg-surface-container transition-colors group">
+<td class="sticky left-0 bg-surface group-hover:bg-surface-container z-10 px-xs py-md text-center border-r border-outline-variant border-l-4 border-l-primary">1</td>
+<td class="sticky left-10 bg-surface group-hover:bg-surface-container z-10 px-sm py-md border-r border-outline-variant">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-surface-bright flex items-center justify-center shrink-0">
+<span class="text-[10px] font-bold">ARS</span>
+</div>
+<span class="font-bold truncate">Arsenal</span>
+</div>
+</td>
+<td class="px-md py-md text-center text-on-surface-variant">38</td>
+<td class="px-md py-md text-center">28</td>
+<td class="px-md py-md text-center">5</td>
+<td class="px-md py-md text-center">5</td>
+<td class="px-md py-md text-center">91</td>
+<td class="px-md py-md text-center">29</td>
+<td class="px-md py-md text-center text-secondary">+62</td>
+<td class="px-md py-md text-center font-bold bg-surface-variant group-hover:bg-surface-container-high border-l border-outline-variant text-primary">89</td>
+</tr>
+<!-- Row 2 (Champions League) -->
+<tr class="bg-surface hover:bg-surface-container transition-colors group">
+<td class="sticky left-0 bg-surface group-hover:bg-surface-container z-10 px-xs py-md text-center border-r border-outline-variant border-l-4 border-l-primary">2</td>
+<td class="sticky left-10 bg-surface group-hover:bg-surface-container z-10 px-sm py-md border-r border-outline-variant">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-surface-bright flex items-center justify-center shrink-0">
+<span class="text-[10px] font-bold">MCI</span>
+</div>
+<span class="font-bold truncate">Man City</span>
+</div>
+</td>
+<td class="px-md py-md text-center text-on-surface-variant">38</td>
+<td class="px-md py-md text-center">28</td>
+<td class="px-md py-md text-center">7</td>
+<td class="px-md py-md text-center">3</td>
+<td class="px-md py-md text-center">96</td>
+<td class="px-md py-md text-center">34</td>
+<td class="px-md py-md text-center text-secondary">+62</td>
+<td class="px-md py-md text-center font-bold bg-surface-variant group-hover:bg-surface-container-high border-l border-outline-variant text-primary">88</td>
+</tr>
+<!-- Row 3 (Champions League) -->
+<tr class="bg-surface hover:bg-surface-container transition-colors group">
+<td class="sticky left-0 bg-surface group-hover:bg-surface-container z-10 px-xs py-md text-center border-r border-outline-variant border-l-4 border-l-primary">3</td>
+<td class="sticky left-10 bg-surface group-hover:bg-surface-container z-10 px-sm py-md border-r border-outline-variant">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-surface-bright flex items-center justify-center shrink-0">
+<span class="text-[10px] font-bold">LIV</span>
+</div>
+<span class="font-bold truncate">Liverpool</span>
+</div>
+</td>
+<td class="px-md py-md text-center text-on-surface-variant">38</td>
+<td class="px-md py-md text-center">24</td>
+<td class="px-md py-md text-center">10</td>
+<td class="px-md py-md text-center">4</td>
+<td class="px-md py-md text-center">86</td>
+<td class="px-md py-md text-center">41</td>
+<td class="px-md py-md text-center text-secondary">+45</td>
+<td class="px-md py-md text-center font-bold bg-surface-variant group-hover:bg-surface-container-high border-l border-outline-variant text-primary">82</td>
+</tr>
+<!-- Row 4 (Europa League) -->
+<tr class="bg-surface hover:bg-surface-container transition-colors group">
+<td class="sticky left-0 bg-surface group-hover:bg-surface-container z-10 px-xs py-md text-center border-r border-outline-variant border-l-4 border-l-secondary">4</td>
+<td class="sticky left-10 bg-surface group-hover:bg-surface-container z-10 px-sm py-md border-r border-outline-variant">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-surface-bright flex items-center justify-center shrink-0">
+<span class="text-[10px] font-bold">AST</span>
+</div>
+<span class="font-bold truncate">Aston Villa</span>
+</div>
+</td>
+<td class="px-md py-md text-center text-on-surface-variant">38</td>
+<td class="px-md py-md text-center">20</td>
+<td class="px-md py-md text-center">8</td>
+<td class="px-md py-md text-center">10</td>
+<td class="px-md py-md text-center">76</td>
+<td class="px-md py-md text-center">61</td>
+<td class="px-md py-md text-center text-secondary">+15</td>
+<td class="px-md py-md text-center font-bold bg-surface-variant group-hover:bg-surface-container-high border-l border-outline-variant text-primary">68</td>
+</tr>
+<!-- Mid Table Row -->
+<tr class="bg-surface hover:bg-surface-container transition-colors group">
+<td class="sticky left-0 bg-surface group-hover:bg-surface-container z-10 px-xs py-md text-center border-r border-outline-variant border-l-4 border-l-transparent">5</td>
+<td class="sticky left-10 bg-surface group-hover:bg-surface-container z-10 px-sm py-md border-r border-outline-variant">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-surface-bright flex items-center justify-center shrink-0">
+<span class="text-[10px] font-bold">TOT</span>
+</div>
+<span class="font-bold truncate">Tottenham</span>
+</div>
+</td>
+<td class="px-md py-md text-center text-on-surface-variant">38</td>
+<td class="px-md py-md text-center">20</td>
+<td class="px-md py-md text-center">6</td>
+<td class="px-md py-md text-center">12</td>
+<td class="px-md py-md text-center">74</td>
+<td class="px-md py-md text-center">61</td>
+<td class="px-md py-md text-center text-secondary">+13</td>
+<td class="px-md py-md text-center font-bold bg-surface-variant group-hover:bg-surface-container-high border-l border-outline-variant text-primary">66</td>
+</tr>
+<!-- Relegation Row -->
+<tr class="bg-surface hover:bg-surface-container transition-colors group">
+<td class="sticky left-0 bg-surface group-hover:bg-surface-container z-10 px-xs py-md text-center border-r border-outline-variant border-l-4 border-l-error">18</td>
+<td class="sticky left-10 bg-surface group-hover:bg-surface-container z-10 px-sm py-md border-r border-outline-variant">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-surface-bright flex items-center justify-center shrink-0">
+<span class="text-[10px] font-bold">LUT</span>
+</div>
+<span class="font-bold truncate">Luton Town</span>
+</div>
+</td>
+<td class="px-md py-md text-center text-on-surface-variant">38</td>
+<td class="px-md py-md text-center">6</td>
+<td class="px-md py-md text-center">8</td>
+<td class="px-md py-md text-center">24</td>
+<td class="px-md py-md text-center">52</td>
+<td class="px-md py-md text-center text-error">85</td>
+<td class="px-md py-md text-center text-error">-33</td>
+<td class="px-md py-md text-center font-bold bg-surface-variant group-hover:bg-surface-container-high border-l border-outline-variant text-primary">26</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Shadow gradient to indicate horizontal scroll -->
+<div class="absolute top-0 right-0 bottom-0 w-8 bg-gradient-to-l from-surface to-transparent pointer-events-none md:hidden"></div>
+</div>
+<!-- Legend -->
+<div class="px-md py-sm bg-surface-container-low border-t border-outline-variant text-[10px] text-on-surface-variant flex gap-md shrink-0">
+<div class="flex items-center gap-1"><div class="w-2 h-2 bg-primary rounded-full"></div> Champions League</div>
+<div class="flex items-center gap-1"><div class="w-2 h-2 bg-secondary rounded-full"></div> Europa League</div>
+<div class="flex items-center gap-1"><div class="w-2 h-2 bg-error rounded-full"></div> Relegation</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full bg-surface dark:bg-surface-container-low border-t border-outline-variant dark:border-outline-variant shadow-lg flex justify-around items-center px-gutter py-base h-16 md:hidden z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">sensors</span>
+<span class="font-label-caps text-label-caps mt-1">Live</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary bg-secondary-container/20 rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="font-label-caps text-label-caps mt-1">Leagues</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-caps text-label-caps mt-1">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">grade</span>
+<span class="font-label-caps text-label-caps mt-1">Favs</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ScoreGuru - Leagues Standings</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#690005",
+                    "inverse-surface": "#dce2f7",
+                    "secondary-fixed": "#ffdbca",
+                    "surface-container-high": "#232a3a",
+                    "on-surface": "#dce2f7",
+                    "surface": "#0c1322",
+                    "on-secondary-container": "#4a1c00",
+                    "surface-dim": "#0c1322",
+                    "secondary-fixed-dim": "#ffb690",
+                    "tertiary-fixed-dim": "#f7be1d",
+                    "error-container": "#93000a",
+                    "on-primary-fixed": "#2c0051",
+                    "secondary": "#ffb690",
+                    "surface-bright": "#323949",
+                    "tertiary-fixed": "#ffdf9a",
+                    "inverse-on-surface": "#293040",
+                    "primary-container": "#9333ea",
+                    "outline": "#988ca0",
+                    "surface-container-highest": "#2e3545",
+                    "outline-variant": "#4d4354",
+                    "tertiary-container": "#866500",
+                    "background": "#0c1322",
+                    "on-primary-fixed-variant": "#6800b4",
+                    "inverse-primary": "#861fdd",
+                    "on-primary-container": "#f6e6ff",
+                    "on-tertiary-fixed": "#251a00",
+                    "on-background": "#dce2f7",
+                    "on-surface-variant": "#cfc2d7",
+                    "tertiary": "#f7be1d",
+                    "on-primary": "#490080",
+                    "surface-tint": "#ddb8ff",
+                    "on-tertiary-fixed-variant": "#5a4300",
+                    "on-error-container": "#ffdad6",
+                    "primary-fixed-dim": "#ddb8ff",
+                    "on-secondary": "#552100",
+                    "on-tertiary": "#3f2e00",
+                    "error": "#ffb4ab",
+                    "surface-container-lowest": "#070e1d",
+                    "on-secondary-fixed-variant": "#783200",
+                    "primary-fixed": "#f0dbff",
+                    "on-tertiary-container": "#ffe9bf",
+                    "surface-container": "#191f2f",
+                    "surface-variant": "#2e3545",
+                    "surface-container-low": "#141b2b",
+                    "primary": "#ddb8ff",
+                    "secondary-container": "#ec6a06",
+                    "on-secondary-fixed": "#341100"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "xl": "32px",
+                    "container-max": "1280px",
+                    "xs": "4px",
+                    "base": "4px",
+                    "gutter": "16px",
+                    "lg": "24px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "data-table": [
+                            "Inter"
+                    ],
+                    "display": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "label-caps": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "data-table": [
+                            "13px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "800"
+                            }
+                    ],
+                    "headline-md": [
+                            "20px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background flex h-screen overflow-hidden antialiased">
+<!-- SideNavBar (Web) -->
+<nav class="hidden md:flex flex-col gap-sm p-md bg-surface-container dark:bg-surface-container docked left-0 h-screen w-64 border-r border-outline-variant dark:border-outline-variant flat no shadows shrink-0">
+<!-- Brand Header -->
+<div class="flex items-center gap-md mb-xl px-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">sports_soccer</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary tracking-tight">ScoreGuru</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Sports Intel</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 flex flex-col gap-sm">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant dark:hover:bg-surface-variant transition-all transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant dark:hover:bg-surface-variant transition-all transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">sports_score</span>
+<span class="font-label-caps text-label-caps">Live Scores</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container font-bold rounded-lg transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+<span class="font-label-caps text-label-caps">Leagues</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant dark:hover:bg-surface-variant transition-all transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">star</span>
+<span class="font-label-caps text-label-caps">Favorites</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant dark:hover:bg-surface-variant transition-all transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-caps text-label-caps">Analytics</span>
+</a>
+</div>
+<!-- Settings / Footer -->
+<div class="mt-auto pt-md border-t border-outline-variant">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant dark:hover:bg-surface-variant transition-all transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col min-w-0 h-screen">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-xl h-16 bg-surface dark:bg-surface docked full-width top-0 border-b border-outline-variant dark:border-outline-variant flat no shadows shrink-0">
+<!-- Left: Brand (Mobile) or Search -->
+<div class="flex items-center gap-md">
+<div class="md:hidden font-headline-md text-headline-md font-extrabold text-primary dark:text-primary tracking-tight">ScoreGuru</div>
+<div class="hidden md:flex items-center bg-surface-container-high rounded-full px-md py-xs border border-outline-variant focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all w-64">
+<span class="material-symbols-outlined text-on-surface-variant mr-sm text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md font-body-md text-on-surface placeholder:text-on-surface-variant w-full py-1" placeholder="Search teams, leagues..." type="text"/>
+</div>
+</div>
+<!-- Right: Actions -->
+<div class="flex items-center gap-sm md:gap-md">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined">calendar_today</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined">contrast</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-100 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-secondary-container rounded-full animate-pulse"></span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-outline-variant overflow-hidden ml-sm cursor-pointer hover:ring-2 ring-primary transition-all">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKay_nqkJYRDK8KqmatxaEvXneGZ8LlVht8TTQCkB5Bs5Bz4X4CfUSNpOct-T_r61TD-80La12xjueQ4Wd2dQxlIlsuV0y9pdj95PNYdtG2hMTbaXE-yq9PppVQa9N6eYaiLwcnDJ333m6y4sOfNHl6crzNC5DrJd1XQkG9PNDdfAjIyuavrXXrGRrpzDV_RJixeKzs4aW47R0VkbsP5iSROr53dxf2gFz53HZb5Hv6wUPKh-Mk0KWCEDf6OffHt7_0f-W4ECUV_c"/>
+</div>
+</div>
+</header>
+<!-- Main Scrollable Canvas -->
+<main class="flex-1 overflow-y-auto pb-24 md:pb-xl p-md md:p-xl space-y-xl bg-background">
+<!-- Page Header & Global Filters -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<div class="flex items-center gap-sm mb-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">public</span>
+<span class="font-label-caps text-label-caps">International</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-label-caps text-label-caps">Global Super League</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface">League Standings</h2>
+</div>
+<div class="flex items-center gap-sm">
+<!-- Season Selector Dropdown Simulation -->
+<button class="flex items-center gap-sm px-md py-sm bg-surface border border-outline-variant rounded-lg text-body-md font-body-md text-on-surface hover:bg-surface-container-high transition-colors">
+<span>2023/2024 Season</span>
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Standings Segmented Control Tabs -->
+<div class="inline-flex p-1 bg-surface-container rounded-lg border border-outline-variant">
+<button class="px-lg py-sm rounded-md bg-surface-variant text-primary font-bold font-body-md text-body-md shadow-sm transition-all">
+                    Overall
+                </button>
+<button class="px-lg py-sm rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-body-md text-body-md transition-all">
+                    Home
+                </button>
+<button class="px-lg py-sm rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-body-md text-body-md transition-all">
+                    Away
+                </button>
+<button class="px-lg py-sm rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-body-md text-body-md transition-all">
+                    Form
+                </button>
+</div>
+<!-- Grouped Tables Container -->
+<div class="space-y-lg">
+<!-- Table Group 1: Western Conference -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-lg shadow-black/10">
+<!-- Group Header -->
+<div class="bg-surface-bright px-md py-sm border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Western Conference</h3>
+<span class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container px-sm py-xs rounded">Matchday 24</span>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left whitespace-nowrap min-w-[800px]">
+<thead class="bg-surface-container border-b border-outline-variant">
+<tr>
+<th class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant w-16 text-center">Pos</th>
+<th class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant">Team</th>
+<th class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant w-12 text-center" title="Played">P</th>
+<th class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant w-12 text-center" title="Won">W</th>
+<th class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant w-12 text-center" title="Drawn">D</th>
+<th class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant w-12 text-center" title="Lost">L</th>
+<th class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant w-12 text-center" title="Goals For">GF</th>
+<th class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant w-12 text-center" title="Goals Against">GA</th>
+<th class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant w-12 text-center" title="Goal Difference">GD</th>
+<th class="px-md py-sm font-label-caps text-label-caps text-primary w-16 text-center font-bold" title="Points">Pts</th>
+<th class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant w-40">Form</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/50">
+<!-- Row 1 (Champions League Zone styling) -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-md py-sm font-data-table text-data-table text-on-surface border-l-4 border-primary">
+<div class="flex items-center justify-center gap-xs">
+<span>1</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">horizontal_rule</span>
+</div>
+</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface font-semibold">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded bg-surface-container-high border border-outline-variant overflow-hidden shrink-0">
+<img alt="Team Logo" class="w-full h-full object-cover" data-alt="A minimalist, high-tech abstract geometric sports team logo featuring sharp angles and vibrant metallic blue and silver colors. The logo is displayed cleanly on a solid dark background, maintaining the dark mode aesthetic of the overall UI. The lighting is crisp and studio-like, emphasizing the sharp edges of the emblem." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwsZ43b-VJatb0G4T1gLnE62XmyulMwzC81LlDIWR0ylYmInJonIYPGgPMSaYWP6J5pFJFtKv74iYeGUDSvKp1fJZJakFRjRPnv_1XuJDmqVijUkYqsPh0V_jE5aVxjw7X7em0ZuO44RMBGGuqQcKDEILOMHL1lcrZlgXXFgNgxsJfNiqkbKabAcr92yotGTJmKG393TTLNhhP86vPfcjs1fVOmH7Tgf4mW5LIgSHYl7WYPfB7yzJmQgAILnIUdoGktJVc1yV_Ju8"/>
+</div>
+<span>Neon City FC</span>
+</div>
+</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface-variant text-center">24</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface text-center">18</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface text-center">4</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface text-center">2</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface-variant text-center">56</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface-variant text-center">21</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface text-center">+35</td>
+<td class="px-md py-sm font-data-table text-data-table text-primary font-bold text-center">58</td>
+<td class="px-md py-sm">
+<div class="flex gap-xs">
+<span class="w-5 h-5 rounded flex items-center justify-center bg-primary-container text-on-primary-container font-label-caps text-[10px]" title="Win">W</span>
+<span class="w-5 h-5 rounded flex items-center justify-center bg-primary-container text-on-primary-container font-label-caps text-[10px]" title="Win">W</span>
+<span class="w-5 h-5 rounded flex items-center justify-center bg-surface-bright text-on-surface font-label-caps text-[10px]" title="Draw">D</span>
+<span class="w-5 h-5 rounded flex items-center justify-center bg-primary-container text-on-primary-container font-label-caps text-[10px]" title="Win">W</span>
+<span class="w-5 h-5 rounded flex items-center justify-center bg-primary-container text-on-primary-container font-label-caps text-[10px]" title="Win">W</span>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-md py-sm font-data-table text-data-table text-on-surface border-l-4 border-primary">
+<div class="flex items-center justify-center gap-xs">
+<span>2</span>
+<span class="material-symbols-outlined text-[16px] text-primary">arrow_upward</span>
+</div>
+</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface font-semibold">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded bg-surface-container-high border border-outline-variant overflow-hidden shrink-0">
+<img alt="Team Logo" class="w-full h-full object-cover" data-alt="A modern, energetic sports team crest featuring stylized flame motifs in deep purple and intense orange hues. The emblem is perfectly centered against a matte black canvas, fitting seamlessly into a premium dark-themed interface. The design feels dynamic, authoritative, and professionally rendered." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD71RSHa5x0FnuEXX7rsyB8xVfztcDMxVL9V0hWsoj5v7cWMvmFKormM6DAXkaiipQ0q9-6MYS1QWFdg8zdDzFdAOwizZaYq6qli9UoB-y-n9jAliFtAsIGMAg0a01YfJ_aL1wwDNJ-IXNwFcULHH-3G7gyp_0_yzy8tG0ExZu9vrqW1WFALZ_jlR-ex1G2s7Ko-aaJkxky3G_TZ8Ji4YWFJi8s7QCocH4XSWk8yqvvAi1YLkVy8CShfhoplseoF_tqbxlrlYe3DEU"/>
+</div>
+<span>Quantum United</span>
+</div>
+</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface-variant text-center">24</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface text-center">17</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface text-center">5</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface text-center">2</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface-variant text-center">49</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface-variant text-center">22</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface text-center">+27</td>
+<td class="px-md py-sm font-data-table text-data-table text-primary font-bold text-center">56</td>
+<td class="px-md py-sm">
+<div class="flex gap-xs">
+<span class="w-5 h-5 rounded flex items-center justify-center bg-primary-container text-on-primary-container font-label-caps text-[10px]" title="Win">W</span>
+<span class="w-5 h-5 rounded flex items-center justify-center bg-primary-container text-on-primary-container font-label-caps text-[10px]" title="Win">W</span>
+<span class="w-5 h-5 rounded flex items-center justify-center bg-primary-container text-on-primary-container font-label-caps text-[10px]" title="Win">W</span>
+<span class="w-5 h-5 rounded flex items-center justify-center bg-surface-bright text-on-surface font-label-caps text-[10px]" title="Draw">D</span>
+<span class="w-5 h-5 rounded flex items-center justify-center bg-primary-container text-on-primary-container font-label-caps text-[10px]" title="Win">W</span>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-md py-sm font-data-table text-data-table text-on-surface border-l-4 border-tertiary">
+<div class="flex items-center justify-center gap-xs">
+<span>3</span>
+<span class="material-symbols-outlined text-[16px] text-error">arrow_downward</span>
+</div>
+</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface font-semibold">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded bg-surface-container-high border border-outline-variant overflow-hidden shrink-0">
+<div class="w-full h-full bg-surface-tint flex items-center justify-center text-on-primary font-bold text-[10px]">SC</div>
+</div>
+<span>Stellar Core FC</span>
+</div>
+</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface-variant text-center">24</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface text-center">15</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface text-center">6</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface text-center">3</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface-variant text-center">41</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface-variant text-center">19</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface text-center">+22</td>
+<td class="px-md py-sm font-data-table text-data-table text-primary font-bold text-center">51</td>
+<td class="px-md py-sm">
+<div class="flex gap-xs">
+<span class="w-5 h-5 rounded flex items-center justify-center bg-error-container text-on-error-container font-label-caps text-[10px]" title="Loss">L</span>
+<span class="w-5 h-5 rounded flex items-center justify-center bg-surface-bright text-on-surface font-label-caps text-[10px]" title="Draw">D</span>
+<span class="w-5 h-5 rounded flex items-center justify-center bg-primary-container text-on-primary-container font-label-caps text-[10px]" title="Win">W</span>
+<span class="w-5 h-5 rounded flex items-center justify-center bg-primary-container text-on-primary-container font-label-caps text-[10px]" title="Win">W</span>
+<span class="w-5 h-5 rounded flex items-center justify-center bg-primary-container text-on-primary-container font-label-caps text-[10px]" title="Win">W</span>
+</div>
+</td>
+</tr>
+<!-- Standard Row 4 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-md py-sm font-data-table text-data-table text-on-surface border-l-4 border-transparent">
+<div class="flex items-center justify-center gap-xs">
+<span>4</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">horizontal_rule</span>
+</div>
+</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded bg-surface-container-high border border-outline-variant overflow-hidden shrink-0">
+<div class="w-full h-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold text-[10px]">VX</div>
+</div>
+<span>Vortex Athletics</span>
+</div>
+</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface-variant text-center">24</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface text-center">12</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface text-center">8</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface text-center">4</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface-variant text-center">38</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface-variant text-center">25</td>
+<td class="px-md py-sm font-data-table text-data-table text-on-surface text-center">+13</td>
+<td class="px-md py-sm font-data-table text-data-table text-primary font-bold text-center">44</td>
+<td class="px-md py-sm">
+<div class="flex gap-xs">
+<span class="w-5 h-5 rounded flex items-center justify-center bg-surface-bright text-on-surface font-label-caps text-[10px]" title="Draw">D</span>
+<span class="w-5 h-5 rounded flex items-center justify-center bg-surface-bright text-on-surface font-label-caps text-[10px]" title="Draw">D</span>
+<span class="w-5 h-5 rounded flex items-center justify-center bg-primary-container text-on-primary-container font-label-caps text-[10px]" title="Win">W</span>
+<span class="w-5 h-5 rounded flex items-center justify-center bg-error-container text-on-error-container font-label-caps text-[10px]" title="Loss">L</span>
+<span class="w-5 h-5 rounded flex items-center justify-center bg-primary-container text-on-primary-container font-label-caps text-[10px]" title="Win">W</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-gutter py-base h-16 bg-surface dark:bg-surface-container-low border-t border-outline-variant dark:border-outline-variant shadow-lg z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest transition-colors w-16 h-full rounded-lg" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps mt-xs">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest transition-colors w-16 h-full rounded-lg" href="#">
+<span class="material-symbols-outlined animate-pulse text-secondary-container">sensors</span>
+<span class="font-label-caps text-label-caps mt-xs">Live</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary bg-secondary-container/20 rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="font-label-caps text-label-caps mt-xs">Leagues</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest transition-colors w-16 h-full rounded-lg" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-caps text-label-caps mt-xs">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest transition-colors w-16 h-full rounded-lg" href="#">
+<span class="material-symbols-outlined">grade</span>
+<span class="font-label-caps text-label-caps mt-xs">Favs</span>
+</a>
+</nav>
+</body></html>

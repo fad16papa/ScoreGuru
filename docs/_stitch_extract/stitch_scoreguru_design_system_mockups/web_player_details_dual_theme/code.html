@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ScoreGuru - Player Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#690005",
+                        "inverse-surface": "#dce2f7",
+                        "secondary-fixed": "#ffdbca",
+                        "surface-container-high": "#232a3a",
+                        "on-surface": "#dce2f7",
+                        "surface": "#0c1322",
+                        "on-secondary-container": "#4a1c00",
+                        "surface-dim": "#0c1322",
+                        "secondary-fixed-dim": "#ffb690",
+                        "tertiary-fixed-dim": "#f7be1d",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#2c0051",
+                        "secondary": "#ffb690",
+                        "surface-bright": "#323949",
+                        "tertiary-fixed": "#ffdf9a",
+                        "inverse-on-surface": "#293040",
+                        "primary-container": "#9333ea",
+                        "outline": "#988ca0",
+                        "surface-container-highest": "#2e3545",
+                        "outline-variant": "#4d4354",
+                        "tertiary-container": "#866500",
+                        "background": "#0c1322",
+                        "on-primary-fixed-variant": "#6800b4",
+                        "inverse-primary": "#861fdd",
+                        "on-primary-container": "#f6e6ff",
+                        "on-tertiary-fixed": "#251a00",
+                        "on-background": "#dce2f7",
+                        "on-surface-variant": "#cfc2d7",
+                        "tertiary": "#f7be1d",
+                        "on-primary": "#490080",
+                        "surface-tint": "#ddb8ff",
+                        "on-tertiary-fixed-variant": "#5a4300",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#ddb8ff",
+                        "on-secondary": "#552100",
+                        "on-tertiary": "#3f2e00",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#070e1d",
+                        "on-secondary-fixed-variant": "#783200",
+                        "primary-fixed": "#f0dbff",
+                        "on-tertiary-container": "#ffe9bf",
+                        "surface-container": "#191f2f",
+                        "surface-variant": "#2e3545",
+                        "surface-container-low": "#141b2b",
+                        "primary": "#ddb8ff",
+                        "secondary-container": "#ec6a06",
+                        "on-secondary-fixed": "#341100"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "xl": "32px",
+                        "container-max": "1280px",
+                        "xs": "4px",
+                        "base": "4px",
+                        "gutter": "16px",
+                        "lg": "24px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "data-table": ["Inter"],
+                        "display": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "data-table": ["13px", { "lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col md:flex-row">
+<!-- SideNavBar (Web) -->
+<nav class="hidden md:flex flex-col gap-sm p-md bg-surface-container dark:bg-surface-container border-r border-outline-variant dark:border-outline-variant docked left-0 h-screen w-64 fixed z-50">
+<div class="mb-xl px-sm">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary">ScoreGuru</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Sports Intel</p>
+</div>
+<div class="flex flex-col gap-sm">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant dark:hover:bg-surface-variant transition-all font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined">home</span>Home
+            </a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant dark:hover:bg-surface-variant transition-all font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined">sports_score</span>Live Scores
+            </a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg bg-primary-container text-on-primary-container font-bold font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined">emoji_events</span>Leagues
+            </a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant dark:hover:bg-surface-variant transition-all font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined">star</span>Favorites
+            </a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant dark:hover:bg-surface-variant transition-all font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined">analytics</span>Analytics
+            </a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant dark:hover:bg-surface-variant transition-all font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined">settings</span>Settings
+            </a>
+</div>
+<div class="mt-auto pt-md border-t border-outline-variant flex items-center gap-sm px-sm">
+<img alt="ScoreGuru Admin" class="w-8 h-8 rounded-full border border-outline" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfFLOzINALHYNo_UBcaxxggizak0Gy1r7UxGZhKl_16WYe5U7R3Jft0NoMKFS1TIJml0LwTtSo38YVlEX9siE4MevHlzaCGiJbemNtqHiOUsE6rmLqws3YNi-5NeQzTOmozFuzfL9TwLdpORRVWf1sRLMEQM52dhZ-8WuJhqm8mqmko5Gax12iUnV-jyxsrnduKxF9VfmyLHQqDLKzr5L7kXXzbdb_l1Wh7HZS52vXrPks5yGd39khCX0AZ6ffgfzsYP02d4-YcRA"/>
+<span class="font-body-md text-body-md">Admin</span>
+</div>
+</nav>
+<!-- TopAppBar (Web & Mobile Header) -->
+<div class="md:ml-64 flex flex-col flex-1 w-full">
+<header class="bg-surface dark:bg-surface docked full-width top-0 border-b border-outline-variant dark:border-outline-variant flat no shadows flex justify-between items-center w-full px-xl h-16 sticky z-40">
+<div class="flex items-center gap-md">
+<span class="md:hidden font-headline-md text-headline-md font-extrabold text-primary dark:text-primary">ScoreGuru</span>
+<!-- Search Bar -->
+<div class="hidden md:flex items-center bg-surface-container rounded-full px-md py-xs border border-outline-variant focus-within:border-primary-container focus-within:ring-2 focus-within:ring-primary-container/50 transition-all">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md font-body-md text-on-surface placeholder-on-surface-variant w-64" placeholder="Search players, teams..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md text-primary dark:text-primary">
+<button class="p-xs hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-colors rounded-full"><span class="material-symbols-outlined">calendar_today</span></button>
+<button class="p-xs hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-colors rounded-full"><span class="material-symbols-outlined">contrast</span></button>
+<button class="p-xs hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-colors rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full animate-pulse"></span>
+</button>
+<img alt="User Profile" class="w-8 h-8 rounded-full border border-outline ml-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmz7MNaev0GIJstK-HNSeVNUQhTGogWWxz7oicNaFes9nYu0AojlHOLcu-lfNkS3p-BStZX1m4CyXXJ5zBWc34Nbca_ZxfpuMwlh8ab6KiB0Cb3Y_3XVRErZ4tK9CV5Ye2TwPerwMQ41nw9SPTUhhdPIzhX-F49zy36WPshNSca7_dsL6wZUkilmYftgermK4RIg82ThwMd6GpFAupWNO247wFMsdmcqdKrVTufJDK6yGDgDT6Ro_0IgUFDYYeUNsRGwTyLGIUM-8"/>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 p-md md:p-xl w-full max-w-container-max mx-auto pb-24 md:pb-xl">
+<!-- Player Hero Bento -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-md mb-xl">
+<!-- Profile Card -->
+<div class="lg:col-span-2 bg-surface-container border border-outline-variant rounded-xl p-lg flex flex-col md:flex-row gap-lg items-center md:items-start relative overflow-hidden">
+<div class="absolute top-0 right-0 p-md opacity-10">
+<span class="material-symbols-outlined text-[120px]">sports_soccer</span>
+</div>
+<img alt="A highly detailed close-up portrait of a professional soccer player in a dark stadium setting. The dramatic side lighting highlights the intensity and focus on their face. The background is a moody, deep blue blurred arena with bright stadium lights creating a lens flare effect. The overall aesthetic is gritty, athletic, and premium." class="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-surface shadow-[0_0_15px_rgba(147,51,234,0.3)] object-cover z-10" data-alt="A highly detailed close-up portrait of a professional soccer player in a dark stadium setting. The dramatic side lighting highlights the intensity and focus on their face. The background is a moody, deep blue blurred arena with bright stadium lights creating a lens flare effect. The overall aesthetic is gritty, athletic, and premium." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqu2tBH3fgW816jWwqnu7s6WLoirpB9p5ornUyk90JnpPk7WzPjMzOIKMIl3d8QBmrsV7RYhNnD2-Mv1M0Lr5FcHzBBDWXw5CKHnt7OU-qX2zMn1Lz4sNuqn9YyGQE2QZ41a_ObFcs6iGZ7tp1CRMSt-JHUtp0iRVNazsF6yk0d-E8yBtlqLx_ZNVgbb1nWipkP1hrIV9ktS_N81ZE6fxXqEiIxYlpF3Oe4-d9uZTakpMclsoKr1f6-qJ-qcpGaTUHwpid6BKFFT0"/>
+<div class="flex-1 z-10 text-center md:text-left">
+<div class="flex items-center justify-center md:justify-start gap-sm mb-xs">
+<span class="bg-secondary-container text-on-surface font-label-caps text-label-caps px-sm py-1 rounded-full flex items-center gap-xs"><span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>LIVE</span>
+<span class="bg-surface-variant text-on-surface-variant font-label-caps text-label-caps px-sm py-1 rounded-full border border-outline-variant">FORWARD</span>
+</div>
+<h2 class="font-display text-display text-on-surface mb-xs">Marcus <span class="text-primary">Alvarez</span></h2>
+<div class="flex flex-wrap justify-center md:justify-start gap-md text-on-surface-variant font-body-md text-body-md mb-md">
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">public</span> Spain</span>
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">calendar_month</span> 24 Yrs</span>
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">height</span> 1.85m</span>
+</div>
+<div class="flex gap-sm justify-center md:justify-start">
+<button class="bg-primary-container text-on-primary-container font-label-caps text-label-caps px-md py-sm rounded-lg hover:bg-primary-container/80 transition-colors">Follow Player</button>
+<button class="border border-primary-container text-primary-container font-label-caps text-label-caps px-md py-sm rounded-lg hover:bg-primary-container/10 transition-colors">Compare Stats</button>
+</div>
+</div>
+</div>
+<!-- Current Team Card -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-lg flex flex-col justify-between">
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-md flex items-center gap-xs"><span class="material-symbols-outlined">shield</span> CURRENT CLUB</h3>
+<div class="flex items-center gap-md mb-md">
+<div class="w-16 h-16 bg-surface-variant rounded-full flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-display text-primary">local_fire_department</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Metro City FC</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Premier Division</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-variant rounded-lg p-sm border border-outline-variant flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Contract Exp:</span>
+<span class="font-headline-md text-headline-md text-on-surface">2027</span>
+</div>
+</div>
+</section>
+<!-- Key Stats Grid -->
+<section class="mb-xl">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md border-l-4 border-primary pl-sm">Season Performance</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-md flex flex-col items-center justify-center text-center hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined text-secondary text-display mb-xs">sports_soccer</span>
+<span class="font-display text-display text-on-surface">18</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-xs">GOALS</span>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-md flex flex-col items-center justify-center text-center hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined text-primary text-display mb-xs">assist_walker</span>
+<span class="font-display text-display text-on-surface">12</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-xs">ASSISTS</span>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-md flex flex-col items-center justify-center text-center hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-display mb-xs">speed</span>
+<span class="font-display text-display text-on-surface">34.2</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-xs">TOP SPEED (km/h)</span>
+</div>
+<!-- Stat Card 4 -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-md flex flex-col items-center justify-center text-center hover:border-primary-container transition-colors relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/20 to-transparent"></div>
+<span class="material-symbols-outlined text-primary-fixed text-display mb-xs z-10">grade</span>
+<span class="font-display text-display text-on-surface z-10">8.4</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-xs z-10">AVG RATING</span>
+</div>
+</div>
+</section>
+<!-- Detailed Analysis & Recent Games -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-xl">
+<!-- Heatmap/Chart Area -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-lg">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-md flex items-center gap-xs"><span class="material-symbols-outlined">data_usage</span> ACTION AREAS</h3>
+<div class="h-64 bg-surface-variant rounded-lg border border-outline-variant flex items-center justify-center relative overflow-hidden">
+<img alt="A stylized, high-tech tactical soccer pitch graphic in dark mode. The field is outlined in neon purple and blue grids against a deep charcoal background. Glowing heatmap overlays show intense activity in the final third, rendered in vibrant orange and red. The aesthetic is purely data-driven, sleek, and modern." class="w-full h-full object-cover opacity-60 mix-blend-screen" data-alt="A stylized, high-tech tactical soccer pitch graphic in dark mode. The field is outlined in neon purple and blue grids against a deep charcoal background. Glowing heatmap overlays show intense activity in the final third, rendered in vibrant orange and red. The aesthetic is purely data-driven, sleek, and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8vpJ2nKh-CC-WY4aHVBu6O93k71LEtrI2I1ShPLJnOJ9MsffS1hIEhG5YXi3hkfVwa00Vn8HkPzIv3zomT50k1bPJHs3-bkyZYlmplLMByit_SoCL8J1xpAs9ymf3DLVYElWmzmeRRq-x2p1JoEqGRSMvJd6gDSwvQUDW8s7MR7BQf-i1pP0lBUhTGfcWJQZ7dqyzLb9RP4WhIxEycEzJ9X1wQ3OExCrnFsexqju_8KlnZbo6zhRHb3m3ccdp4S0pqu6FZ7ucwPU"/>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<span class="bg-surface/80 px-md py-sm rounded border border-outline-variant font-data-table text-data-table text-on-surface">Heatmap Data Loaded</span>
+</div>
+</div>
+</div>
+<!-- Recent Games Table -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-lg flex flex-col">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-md flex items-center gap-xs"><span class="material-symbols-outlined">history</span> RECENT MATCHES</h3>
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant">
+<th class="font-label-caps text-label-caps text-on-surface-variant py-sm px-xs">DATE</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant py-sm px-xs">OPPONENT</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant py-sm px-xs text-center">G</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant py-sm px-xs text-center">A</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant py-sm px-xs text-right">RTG</th>
+</tr>
+</thead>
+<tbody class="font-data-table text-data-table text-on-surface">
+<tr class="border-b border-outline-variant/50 hover:bg-surface-variant transition-colors">
+<td class="py-md px-xs">Oct 24</td>
+<td class="py-md px-xs flex items-center gap-xs"><span class="w-4 h-4 bg-error-container rounded-full"></span> vs RED</td>
+<td class="py-md px-xs text-center font-bold text-secondary">2</td>
+<td class="py-md px-xs text-center">1</td>
+<td class="py-md px-xs text-right text-primary-fixed font-bold">9.1</td>
+</tr>
+<tr class="border-b border-outline-variant/50 hover:bg-surface-variant transition-colors">
+<td class="py-md px-xs">Oct 18</td>
+<td class="py-md px-xs flex items-center gap-xs"><span class="w-4 h-4 bg-tertiary-fixed rounded-full"></span> @ YLW</td>
+<td class="py-md px-xs text-center">0</td>
+<td class="py-md px-xs text-center">1</td>
+<td class="py-md px-xs text-right">7.4</td>
+</tr>
+<tr class="hover:bg-surface-variant transition-colors">
+<td class="py-md px-xs">Oct 12</td>
+<td class="py-md px-xs flex items-center gap-xs"><span class="w-4 h-4 bg-surface-bright rounded-full border border-outline"></span> vs WHT</td>
+<td class="py-md px-xs text-center font-bold text-secondary">1</td>
+<td class="py-md px-xs text-center">0</td>
+<td class="py-md px-xs text-right">8.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- BottomNavBar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-gutter py-base h-16 md:hidden bg-surface dark:bg-surface-container-low border-t border-outline-variant dark:border-outline-variant shadow-lg z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest font-label-caps text-label-caps w-16" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="mt-xs">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest font-label-caps text-label-caps w-16 animate-pulse text-secondary-container" href="#">
+<span class="material-symbols-outlined">sensors</span>
+<span class="mt-xs">Live</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary bg-secondary-container/20 rounded-full px-4 py-1 font-label-caps text-label-caps w-20" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="mt-xs">Leagues</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest font-label-caps text-label-caps w-16" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="mt-xs">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest font-label-caps text-label-caps w-16" href="#">
+<span class="material-symbols-outlined">grade</span>
+<span class="mt-xs">Favs</span>
+</a>
+</nav>
+</body></html>

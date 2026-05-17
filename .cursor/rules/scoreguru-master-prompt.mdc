@@ -1,0 +1,670 @@
+---
+description: ScoreGuru master project context, architecture, tech stack, design system, MVP scope, and development rules
+alwaysApply: true
+---
+
+# ScoreGuru Master Project Prompt
+
+You are continuing an existing production-minded project called ScoreGuru.
+
+ScoreGuru is a global sports live score platform for web and mobile users. The product displays live scores, fixtures, games, leagues, teams, players, standings, seasons, statistics, favorites, and sports data powered by API-SPORTS.
+
+This is not a throwaway prototype. Build it as a scalable, maintainable, production-ready product.
+
+Do not redesign the whole system from scratch unless explicitly requested.
+Do not replace the approved architecture unless absolutely necessary.
+Do not introduce random framework changes.
+Do not create duplicate entities, services, pages, routes, components, DTOs, or APIs if an equivalent already exists.
+Preserve the existing conventions, naming patterns, folders, and design system once they are established.
+
+The goal is to build ScoreGuru gradually, starting with a strong MVP.
+
+---
+
+## 1. Product Identity
+
+Product name: ScoreGuru
+
+Product type:
+- Sports live score website
+- Responsive web application
+- Future mobile-friendly experience for iOS and Android users
+- Sports intelligence dashboard
+
+Primary user value:
+- Users can quickly view live scores
+- Users can browse leagues
+- Users can view game details
+- Users can check standings
+- Users can search teams, leagues, players, and games
+- Users can save favorites
+- Users can manage their profile, preferences, and theme
+
+ScoreGuru must feel:
+- Fast
+- Clean
+- Trustworthy
+- Sports-focused
+- Data-rich but not cluttered
+- Premium but practical
+- Easy to scan in seconds
+
+---
+
+## 2. Approved Technology Stack
+
+Frontend:
+- React.js
+- TypeScript
+- Tailwind CSS
+- Redux Toolkit
+- RTK Query for API data fetching and server cache
+- Clerk React SDK for login/session UI
+
+Backend:
+- ASP.NET Core / .NET Core Web API
+- C#
+- PostgreSQL
+- Entity Framework Core
+- Redis
+- ASP.NET Core Identity for local user, roles, claims, and authorization support
+- Policy-based authorization
+- API-SPORTS provider integration
+
+Authentication and authorization:
+- Clerk for Google login
+- Clerk for Apple login
+- Clerk for email login
+- Clerk is the external authentication provider and session issuer
+- .NET backend validates Clerk-issued JWT tokens
+- PostgreSQL is the source of truth for ScoreGuru user profile, roles, permissions, favorites, settings, and preferences
+- .NET Identity must not issue primary login tokens while Clerk is the selected authentication provider
+- .NET backend owns authorization through roles, claims, permissions, and policies
+
+Database:
+- PostgreSQL
+
+Cache:
+- Redis
+
+Development tools through Docker:
+- PostgreSQL
+- pgAdmin
+- Redis
+- RedisInsight
+
+Optional Dockerized services:
+- ScoreGuru .NET API
+- ScoreGuru background worker
+- React frontend later
+
+Important:
+- API-SPORTS is a third-party hosted API.
+- Do not attempt to run API-SPORTS inside Docker.
+- Only our own API-SPORTS integration adapter, backend API, or worker can run in Docker.
+
+---
+
+## 3. Approved Sports Data Provider
+
+Main sports data provider:
+- API-SPORTS
+
+Initial MVP provider scope:
+- Start with football/soccer first using API-FOOTBALL from API-SPORTS.
+- Design the provider layer so other API-SPORTS products can be added later, such as basketball, baseball, tennis, hockey, cricket, and others.
+
+Important data provider rules:
+- React must never call API-SPORTS directly.
+- API-SPORTS keys must never be exposed in the frontend.
+- All API-SPORTS calls must go through the .NET backend or worker.
+- API keys must come from environment variables, Docker secrets, CI/CD secrets, or Azure Key Vault later.
+- Use Redis to cache API-SPORTS responses and reduce external API calls.
+- Normalize API-SPORTS responses into ScoreGuru DTOs before returning to the frontend.
+- Avoid leaking API-SPORTS response shape directly into frontend components.
+
+Correct flow:
+
+React + RTK Query
+↓
+ScoreGuru .NET API
+↓
+Redis cache check
+↓
+API-SPORTS external API
+↓
+Normalize response
+↓
+Return ScoreGuru DTOs to frontend
+
+---
+
+## 4. Core Data Architecture
+
+Use the following conceptual data architecture:
+
+Seasons:
+- Seasons connect to leagues
+- Seasons can filter games
+
+Leagues:
+- Leagues contain games
+- Leagues contain teams
+- Leagues contain players
+- Leagues contain standings
+
+Games:
+- Games contain live data
+- Games contain details
+- Games contain statistics
+
+Statistics:
+- Game statistics can lead to team statistics
+- Game statistics can lead to player statistics
+
+Teams:
+- Teams contain team profile
+- Teams connect to players
+- Teams connect to team statistics
+- Teams connect to games
+
+Players:
+- Players contain player profile
+- Players connect to player statistics
+- Players connect to teams
+- Players connect to games
+
+Standings:
+- Standings contain overall league standings
+- Standings may contain conferences
+- Standings may contain divisions
+
+Conferences:
+- Conference standings show rankings, wins, losses, points, form, and movement where supported
+
+Divisions:
+- Division standings show rankings, wins, losses, points, form, and movement where supported
+
+Important:
+- Do not force conferences or divisions for sports or leagues that do not support them.
+- Always design the domain so sport-specific data can vary safely.
+- Do not mix sport-specific statistics incorrectly.
+
+Examples:
+- Football/soccer: goals, assists, possession, shots, cards, fouls
+- Basketball: points, rebounds, assists, steals, blocks
+- Tennis: sets, games, aces, double faults, break points
+- Baseball: runs, hits, errors, innings
+- Cricket: runs, wickets, overs, run rate
+
+---
+
+## 5. MVP Scope
+
+Build the MVP first. Do not overbuild advanced analytics before the score experience is stable.
+
+MVP web pages:
+1. Home Dashboard
+2. Live Scores
+3. Game Details
+4. League Details
+5. Standings
+6. Search Results
+7. Basic Favorites
+8. Basic Team Details
+9. Basic Player Details
+
+MVP mobile responsive pages:
+1. Scores Home
+2. Game Details
+3. League Details
+4. Standings
+5. Search
+6. Basic Favorites
+7. Basic Team Details
+8. Basic Player Details
+
+Move to Phase 2:
+- Advanced Statistics Hub
+- Advanced player analytics
+- Advanced team analytics
+- Alert preference management
+- Push notifications
+- Performance trend charts
+- Advanced conference and division side panels
+- Deep personalized live alerts
+- Multi-sport advanced comparisons
+
+MVP priority:
+- Fast score scanning
+- Clear live status
+- League grouping
+- Game detail drill-down
+- Simple standings
+- Search
+- Basic favorites
+- Basic profile and theme preferences
+
+---
+
+## 6. Frontend Architecture Rules
+
+Use:
+- React.js
+- TypeScript
+- Tailwind CSS
+- Redux Toolkit
+- RTK Query
+- Clerk React SDK
+
+Recommended frontend structure:
+
+src/
+  app/
+    store.ts
+    rootReducer.ts
+
+  auth/
+    ClerkProviderWrapper.tsx
+    ProtectedRoute.tsx
+    useAuthToken.ts
+
+  services/
+    scoreGuruApi.ts
+
+  features/
+    scores/
+    games/
+    leagues/
+    standings/
+    teams/
+    players/
+    favorites/
+    user/
+    theme/
+    search/
+
+  components/
+    layout/
+    scores/
+    games/
+    leagues/
+    standings/
+    teams/
+    players/
+    shared/
+
+  styles/
+    globals.css
+
+Frontend rules:
+- Use TypeScript everywhere.
+- Use reusable components.
+- Use RTK Query for backend API calls.
+- Use Redux Toolkit for app-level UI state such as selected sport, selected date, filters, layout state, and theme state.
+- Do not store Clerk tokens manually in Redux.
+- Use Clerk hooks to obtain auth state and tokens.
+- Inject Clerk tokens into RTK Query requests through prepareHeaders or an approved wrapper.
+- Keep components small, focused, and testable.
+- Avoid giant page components with mixed business logic and UI.
+- Keep API response mapping out of visual components.
+- Use loading, empty, and error states for every data-heavy screen.
+- Use skeleton loaders for score cards and tables.
+
+---
+
+## 7. Backend Architecture Rules
+
+Use a clean, layered backend structure:
+
+ScoreGuru.Api
+ScoreGuru.Application
+ScoreGuru.Domain
+ScoreGuru.Infrastructure
+
+Optional later:
+ScoreGuru.Worker
+
+Backend rules:
+- Controllers must stay thin.
+- Business logic must not live inside controllers.
+- Use application services, commands, queries, or handlers depending on the established project pattern.
+- Use DTOs for API responses.
+- Do not return EF entities directly to the frontend.
+- Use FluentValidation if validation is added.
+- Use EF Core for PostgreSQL persistence.
+- Use Redis for caching.
+- Use HttpClientFactory for API-SPORTS calls.
+- Use typed options for configuration.
+- Use structured logging.
+- Do not log secrets, API keys, access tokens, refresh tokens, or raw sensitive payloads.
+- Use cancellation tokens for async operations.
+- Use pagination for list endpoints.
+- Use defensive limits for page size.
+- Use UTC timestamps in backend and database.
+- Use environment-specific configuration.
+
+---
+
+## 8. Authentication and User Ownership
+
+Approved model:
+- Option A: Clerk + .NET authorization hybrid
+
+Responsibilities:
+- Clerk handles login and session issuance.
+- Clerk supports Google, Apple, and email login.
+- React uses Clerk for login UI and session state.
+- .NET API validates Clerk JWTs.
+- PostgreSQL stores ScoreGuru-owned user data.
+- .NET Identity supports local users, roles, claims, permissions, and policies.
+- .NET authorization controls what authenticated users can access.
+
+Important:
+- Clerk is not the source of truth for ScoreGuru business data.
+- PostgreSQL is the source of truth for user profile, roles, permissions, favorites, preferences, and theme.
+- Do not store important ScoreGuru profile data only in Clerk metadata.
+- Do not create a second password-based login flow in .NET Identity while Clerk is active.
+
+Recommended user-related tables:
+- AspNetUsers or ApplicationUsers
+- AspNetRoles
+- AspNetUserRoles
+- AspNetUserClaims
+- UserProfiles
+- UserFavoriteTeams
+- UserFavoriteLeagues
+- UserFavoritePlayers
+- UserFavoriteGames
+- UserSportPreferences
+- UserThemeSettings
+- UserAuditLogs
+
+Recommended ApplicationUser fields:
+- Id
+- ClerkUserId
+- Email
+- DisplayName
+- AvatarUrl
+- Provider
+- IsActive
+- CreatedAtUtc
+- UpdatedAtUtc
+- LastLoginAtUtc
+
+Recommended profile fields:
+- UserId
+- FirstName
+- LastName
+- Country
+- PreferredSports
+- PreferredLeagues
+- ThemePreference
+- TimeZone
+- Language
+
+Recommended auth endpoints:
+- GET /api/auth/me
+- POST /api/auth/sync-user
+- GET /api/users/me/profile
+- PUT /api/users/me/profile
+- PUT /api/users/me/theme
+- GET /api/users/me/favorites
+- POST /api/users/me/favorites
+- DELETE /api/users/me/favorites/{id}
+
+For MVP:
+- GET /api/auth/me may automatically sync a user if the Clerk user does not exist locally yet.
+
+---
+
+## 9. API-SPORTS Integration Rules
+
+Create a provider integration layer instead of scattering API-SPORTS calls across the app.
+
+Recommended abstractions:
+- IApiSportsClient
+- IScoreProvider
+- IFootballScoreProvider
+- ApiSportsFootballProvider
+- SportsDataCacheService
+- SportsDataNormalizer
+
+Rules:
+- Use typed HttpClient.
+- Use configuration options for base URL and API key.
+- Use Redis cache before calling API-SPORTS.
+- Use reasonable cache durations depending on data type.
+- Do not cache all data with the same duration.
+- Do not expose raw API-SPORTS payloads to React.
+- Normalize external data into ScoreGuru DTOs.
+
+Suggested cache behavior:
+- Live scores: very short cache
+- Fixtures for today: short cache
+- Standings: medium cache
+- Teams and leagues: longer cache
+- Seasons and countries: long cache
+- Game details: short to medium cache depending on status
+- Finished game details: longer cache
+
+---
+
+## 10. Design System
+
+ScoreGuru uses the Creativorare-inspired sports theme.
+
+Official color palette:
+
+--cr-purple: #9333EA;
+--cr-purple-dark: #7E22CE;
+--cr-orange: #F97316;
+--cr-yellow: #EAB308;
+--cr-text-dark: #111827;
+--cr-muted: #6B7280;
+--cr-bg-light: #F6F7FB;
+
+Additional dark theme tokens:
+
+--cr-bg-dark: #0B1020;
+--cr-surface-dark: #111827;
+--cr-surface-dark-2: #1F2937;
+--cr-border-dark: #374151;
+--cr-text-light: #F9FAFB;
+--cr-muted-dark: #9CA3AF;
+
+Color usage:
+- Purple is the primary brand color.
+- Purple dark is used for hover, active, selected, and pressed states.
+- Orange is used for live games, live badges, urgent events, and real-time status.
+- Yellow is used for highlights, featured matches, trending games, and important statistics.
+- Text dark is used for main text in light theme.
+- Muted is used for secondary labels and metadata.
+- Light background is used for the white/light theme.
+
+Theme support:
+- Light theme
+- Dark theme
+- System default later
+
+Tailwind rules:
+- Use Tailwind dark mode with class strategy.
+- Use token-based styling.
+- Avoid one-off random colors.
+- Keep spacing based on a 4px scale.
+- Use consistent border radius.
+- Use consistent shadows.
+- Use consistent card, table, badge, button, tab, and input styles.
+
+---
+
+## 11. Required Reusable Components
+
+Create reusable UI components before duplicating page-specific elements.
+
+Layout:
+- AppShell
+- WebSidebar
+- WebHeader
+- MobileHeader
+- MobileBottomNav
+- PageContainer
+
+Shared:
+- Button
+- Card
+- Badge
+- Tabs
+- SegmentedControl
+- SearchInput
+- DateSelector
+- Dropdown
+- EmptyState
+- ErrorState
+- Skeleton
+- Avatar
+- ThemeToggle
+
+Scores:
+- ScoreCard
+- LeagueScoreGroup
+- GameStatusBadge
+- LiveBadge
+- SportChip
+- ScoreFilterBar
+
+Games:
+- GameHeader
+- GameTabs
+- GameTimeline
+- TeamStatsComparison
+- PlayerStatsTable
+- GameDetailsPanel
+
+Leagues:
+- LeagueHeader
+- LeagueTabs
+- LeagueGamesList
+- LeagueStandingsPreview
+
+Standings:
+- StandingsTable
+- StandingsMobileTable
+- FormIndicator
+- PositionMovement
+
+Teams:
+- TeamHeader
+- TeamForm
+- TeamStatsSummary
+- TeamRosterPreview
+
+Players:
+- PlayerHeader
+- PlayerStatCards
+- PlayerRecentGames
+
+Favorites:
+- FavoriteToggle
+- FavoritesList
+
+---
+
+## 12. MVP Build Order
+
+Build in this order:
+
+1. Project foundation
+2. Tailwind theme tokens
+3. App shell
+4. Clerk frontend integration
+5. .NET backend foundation
+6. PostgreSQL and EF Core setup
+7. .NET Identity local user setup
+8. Clerk JWT validation in .NET API
+9. /api/auth/me user sync
+10. API-SPORTS provider client
+11. Redis cache layer
+12. Home Dashboard
+13. Live Scores
+14. Game Details
+15. League Details
+16. Standings
+17. Search
+18. Basic Favorites
+19. Basic Team Details
+20. Basic Player Details
+
+Do not start Phase 2 features until the MVP score flow is stable.
+
+---
+
+## 13. Docker Development Setup
+
+For development, use Docker for tools:
+
+Required containers:
+- PostgreSQL
+- pgAdmin
+- Redis
+- RedisInsight
+
+Optional containers:
+- ScoreGuru API
+- ScoreGuru Worker
+- React app later
+
+Do not Dockerize API-SPORTS itself.
+
+Use Docker Compose for local development.
+
+Secrets:
+- Never commit real API keys.
+- Never commit Clerk secrets.
+- Use .env for local development.
+- Use Azure Key Vault later for cloud environments.
+
+---
+
+## 14. Quality and Delivery Rules
+
+For every implementation task:
+- Make the smallest safe change.
+- Follow the existing structure.
+- Avoid duplicate code.
+- Prefer reusable components.
+- Add or update tests where practical.
+- Ensure the project builds.
+- Ensure TypeScript has no avoidable errors.
+- Ensure backend compiles.
+- Use meaningful names.
+- Use async/await properly.
+- Use cancellation tokens in backend methods.
+- Handle loading, empty, and error states in UI.
+- Return clear API error responses.
+- Do not expose internal exception details to users.
+- Keep logs useful but safe.
+
+When creating code:
+- Show file paths.
+- Explain the purpose of each new file.
+- Keep implementation aligned with this master prompt.
+- Do not introduce unrelated libraries without a strong reason.
+- Do not change the tech stack without explicit approval.
+
+---
+
+## 15. Non-Negotiable Rules
+
+- React must not call API-SPORTS directly.
+- API-SPORTS keys must never be exposed to the browser.
+- Clerk is the authentication issuer.
+- PostgreSQL is the source of truth for ScoreGuru user data.
+- .NET backend owns authorization.
+- Do not use .NET Identity to create a competing primary login system while Clerk is active.
+- Use Redis for caching external sports data.
+- Use Tailwind theme tokens.
+- Maintain light and dark theme support.
+- Build MVP first.
+- Do not overbuild advanced statistics too early.
+- Keep the product consistent from page layout down to the smallest UI atom.

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ScoreGuru - League Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#690005",
+                    "inverse-surface": "#dce2f7",
+                    "secondary-fixed": "#ffdbca",
+                    "surface-container-high": "#232a3a",
+                    "on-surface": "#dce2f7",
+                    "surface": "#0c1322",
+                    "on-secondary-container": "#4a1c00",
+                    "surface-dim": "#0c1322",
+                    "secondary-fixed-dim": "#ffb690",
+                    "tertiary-fixed-dim": "#f7be1d",
+                    "error-container": "#93000a",
+                    "on-primary-fixed": "#2c0051",
+                    "secondary": "#ffb690",
+                    "surface-bright": "#323949",
+                    "tertiary-fixed": "#ffdf9a",
+                    "inverse-on-surface": "#293040",
+                    "primary-container": "#9333ea",
+                    "outline": "#988ca0",
+                    "surface-container-highest": "#2e3545",
+                    "outline-variant": "#4d4354",
+                    "tertiary-container": "#866500",
+                    "background": "#0c1322",
+                    "on-primary-fixed-variant": "#6800b4",
+                    "inverse-primary": "#861fdd",
+                    "on-primary-container": "#f6e6ff",
+                    "on-tertiary-fixed": "#251a00",
+                    "on-background": "#dce2f7",
+                    "on-surface-variant": "#cfc2d7",
+                    "tertiary": "#f7be1d",
+                    "on-primary": "#490080",
+                    "surface-tint": "#ddb8ff",
+                    "on-tertiary-fixed-variant": "#5a4300",
+                    "on-error-container": "#ffdad6",
+                    "primary-fixed-dim": "#ddb8ff",
+                    "on-secondary": "#552100",
+                    "on-tertiary": "#3f2e00",
+                    "error": "#ffb4ab",
+                    "surface-container-lowest": "#070e1d",
+                    "on-secondary-fixed-variant": "#783200",
+                    "primary-fixed": "#f0dbff",
+                    "on-tertiary-container": "#ffe9bf",
+                    "surface-container": "#191f2f",
+                    "surface-variant": "#2e3545",
+                    "surface-container-low": "#141b2b",
+                    "primary": "#ddb8ff",
+                    "secondary-container": "#ec6a06",
+                    "on-secondary-fixed": "#341100"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "xl": "32px",
+                    "container-max": "1280px",
+                    "xs": "4px",
+                    "base": "4px",
+                    "gutter": "16px",
+                    "lg": "24px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "data-table": [
+                            "Inter"
+                    ],
+                    "display": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "label-caps": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "data-table": [
+                            "13px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "800"
+                            }
+                    ],
+                    "headline-md": [
+                            "20px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md min-h-screen flex">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col gap-sm p-md bg-surface-container dark:bg-surface-container docked left-0 h-screen w-64 border-r border-outline-variant dark:border-outline-variant flat no shadows">
+<div class="mb-xl px-sm">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary">ScoreGuru</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Sports Intel</p>
+</div>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-variant dark:hover:bg-surface-variant transition-all font-label-caps text-label-caps Click: transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+            Home
+        </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-variant dark:hover:bg-surface-variant transition-all font-label-caps text-label-caps Click: transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="sports_score">sports_score</span>
+            Live Scores
+        </a>
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container font-bold rounded-lg font-label-caps text-label-caps Click: transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="emoji_events">emoji_events</span>
+            Leagues
+        </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-variant dark:hover:bg-surface-variant transition-all font-label-caps text-label-caps Click: transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+            Favorites
+        </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-variant dark:hover:bg-surface-variant transition-all font-label-caps text-label-caps Click: transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+            Analytics
+        </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-variant dark:hover:bg-surface-variant transition-all font-label-caps text-label-caps Click: transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+            Settings
+        </a>
+<div class="mt-auto px-sm flex items-center gap-md pt-xl border-t border-outline-variant">
+<img alt="ScoreGuru Admin" class="w-10 h-10 rounded-full" data-alt="A small circular profile picture of a professional looking individual, representing the admin user for the ScoreGuru sports analytics platform, set against a dark mode high contrast interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzMPFP80qwqHTA5RjaG5CXxeMUSc3ivAc-1MdRIt01FEvaCVgOPhS1Nt40Xq_OAD-ibIgz_6xnrP-AhldaI3NeaM5LynY_onMH39IPfDLlhg1IvypOGqjjpLwO-e-QVNXfjDj-NsmloHEXTVbtYIR4E0eR6Y8xYvUcY8mJriZMn7-iMv_GcklZCjSlZ1hu1CuCLWQuEG-S4kIbvXSdK-F9ZGPZ1Bq0HYhkr6cPiEVJDWc5tj8yhCn8ya88h-qpn9XSN7rBLP0TEpg"/>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface">Admin User</p>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0">
+<!-- TopAppBar (Mobile & Desktop) -->
+<header class="flex justify-between items-center w-full px-xl h-16 bg-surface dark:bg-surface text-primary dark:text-primary docked full-width top-0 border-b border-outline-variant dark:border-outline-variant flat no shadows md:px-xl px-md">
+<div class="flex items-center gap-md md:hidden">
+<span class="font-headline-md text-headline-md font-extrabold text-primary dark:text-primary">ScoreGuru</span>
+</div>
+<div class="hidden md:flex flex-1 max-w-md mx-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container-high border border-outline-variant rounded-full py-2 pl-10 pr-4 text-on-surface focus:border-primary focus:ring-2 focus:ring-primary/50 font-body-md text-body-md outline-none" placeholder="Search leagues, teams, players..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-full p-2 Active: scale-95 duration-100">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-full p-2 Active: scale-95 duration-100">
+<span class="material-symbols-outlined" data-icon="contrast">contrast</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-full p-2 Active: scale-95 duration-100">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<img alt="User Profile" class="w-8 h-8 rounded-full md:hidden" data-alt="A small circular profile picture of a professional looking individual, representing the user profile for the ScoreGuru sports analytics platform, set against a dark mode high contrast interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC5yS7xwQLUkevQZRfa0DdmnripmCYQ4BJBAJRBXjnyonmMwgB-a4Jx6QnsCqoidFfEizDA2ObPZ7TtkHJOPCAnw787WfxNCCHE6fsZKEULGhqhWPi0lulTLxqrCMebIn25K9156iUpq19b-Bom1a6HA2FGpn9iA61UIEi6AG5DVdSgn4_koNT3d9mOIsUjJyzgsjgsmhsu0A-mcEf3f4pacK5d5IhRiPsPMUCOPN_bkW4Ia8CoE0GoRc3AFlunDK4tsr7_7Q0wmw"/>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="flex-1 overflow-y-auto p-md md:p-xl pb-24 md:pb-xl">
+<div class="max-w-[1280px] mx-auto flex flex-col gap-xl">
+<!-- League Header & Season Selector -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-end gap-md">
+<div class="flex items-center gap-lg">
+<div class="w-20 h-20 bg-surface-container-high rounded-xl border border-outline-variant flex items-center justify-center p-sm">
+<img alt="Premier League Logo" class="w-full h-full object-contain" data-alt="A vibrant, stylized logo of a professional sports league, specifically a lion wearing a crown, set against a dark theme background, representing high tier sports competition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdA01WjIbakp6lKpcl1RZ_tQ2xniejiTvHNb1Zv5v1mlucZd538aSbPKEe6S3oFkcjOc5gOM-gkdv-6tvgkPBg1c4Lz7ocTmScAaCx_SMp9usmumjumF4p8Pz6ZhQfUUPXe2kheX2S_Y03SF2n6xcN5hPSZsYzl7Qmt2M4uYW1a3vqEhz95Fk_eSMOoupK9nO5tw1u8uLeFP34ygeYmboQOF_NwXRcxLirxnOjs_-HgW3FfmSzgc9UCMi-ApT-fCuV6hAH3lvwjMI"/>
+</div>
+<div>
+<h2 class="font-display text-display text-on-surface md:block hidden">Premier League</h2>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface md:hidden">Premier League</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-sm">England • Top Tier Football</p>
+</div>
+</div>
+<div class="w-full md:w-auto">
+<select class="w-full md:w-48 bg-surface-container border border-outline-variant rounded-lg py-2 px-4 text-on-surface focus:border-primary focus:ring-2 focus:ring-primary/50 font-label-caps text-label-caps outline-none appearance-none cursor-pointer">
+<option>2023/2024 Season</option>
+<option>2022/2023 Season</option>
+<option>2021/2022 Season</option>
+</select>
+</div>
+</section>
+<!-- Navigation Tabs -->
+<nav class="flex overflow-x-auto border-b border-outline-variant no-scrollbar">
+<button class="font-label-caps text-label-caps px-lg py-md text-primary dark:text-primary font-bold border-b-2 border-primary whitespace-nowrap">
+                        Games
+                    </button>
+<button class="font-label-caps text-label-caps px-lg py-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors whitespace-nowrap">
+                        Standings
+                    </button>
+<button class="font-label-caps text-label-caps px-lg py-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors whitespace-nowrap">
+                        Teams
+                    </button>
+<button class="font-label-caps text-label-caps px-lg py-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors whitespace-nowrap">
+                        Players
+                    </button>
+<button class="font-label-caps text-label-caps px-lg py-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors whitespace-nowrap">
+                        Stats
+                    </button>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- Left Column: Games List -->
+<div class="lg:col-span-8 flex flex-col gap-md">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Matchweek 28</h3>
+<button class="font-label-caps text-label-caps text-primary flex items-center gap-xs">
+                                Filter <span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+</button>
+</div>
+<!-- Live Game Card -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-md flex flex-col gap-md">
+<div class="flex justify-between items-center bg-surface p-xs rounded-lg border border-outline-variant">
+<span class="font-label-caps text-label-caps bg-secondary-container text-white px-2 py-1 rounded-full animate-pulse flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-white"></span> Live
+                                </span>
+<span class="font-label-caps text-label-caps text-secondary-container">65'</span>
+</div>
+<div class="flex justify-between items-center px-lg">
+<div class="flex flex-col items-center gap-sm">
+<div class="w-12 h-12 bg-white rounded-full p-1">
+<img alt="Arsenal Logo" class="w-full h-full object-contain" data-alt="A detailed, high resolution logo of a professional football team, featuring a red and white crest with a cannon, set against a dark premium UI backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYsWbG7dIdYzScxPYXanO_EDSljD-iy-y5DKo0RFKMtNTMySkkqL1zs1a_7IIKoRxUvSZ92D4BvRqSZg-tkdlUtjyQf8FAS7bQ1DF47SsHbROjF1RS6fgYldzdRqj8uZSqx23TZ-Ucl-HaVf8-6Mt0yV-2AZ0yyRmgVkZKzooSQ1qS72QgkxDEPidfcYJJKXqbWOsR1MX5LhEFTVCSg98x6sjTQpNv-XFmwXO4V62NNYeK8JExfBkOXqU3Q782ep3UqXwsF3R2LiU"/>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface">ARS</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="font-headline-lg text-headline-lg text-on-surface tracking-widest">
+                                        2 <span class="text-outline-variant mx-2">-</span> 1
+                                    </div>
+</div>
+<div class="flex flex-col items-center gap-sm">
+<div class="w-12 h-12 bg-white rounded-full p-1">
+<img alt="Chelsea Logo" class="w-full h-full object-contain" data-alt="A detailed, high resolution logo of a professional football team, featuring a blue crest with a lion, set against a dark premium UI backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYav633CpN8tonydNOC7qb7LuPl3AN6-fe3RLdprd7BH8XRx47YvGkRI1oArav9IwZuu2E1l2AFJ7teXbdPjNN0vz1_yo3qhgIOzB9J7gwLt_VocAeynfx97P6pZaPugbR3nwh5cHkG47iC_oomQudgWBoqmYMmqq_3qE_F5P5XiZ3TF2uQ8ujeCNr2wVyZ4HxaVAegWeaM8rfPXWNVppP_Wt7NEQQ5DylC8pHIImZxRuv6av9m3cBaPZjAdksMJ4OZ1vurbog7J4"/>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface">CHE</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 text-center border-t border-outline-variant pt-md mt-sm">
+<div>
+<p class="font-data-table text-data-table text-on-surface-variant">Possession</p>
+<p class="font-body-lg text-body-lg text-on-surface mt-xs">58%</p>
+</div>
+<div>
+<p class="font-data-table text-data-table text-on-surface-variant">Shots on Target</p>
+<p class="font-body-lg text-body-lg text-on-surface mt-xs">6 - 3</p>
+</div>
+</div>
+</div>
+<!-- Scheduled Game Card -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-md flex flex-col gap-md opacity-80 hover:opacity-100 transition-opacity">
+<div class="flex justify-between items-center bg-surface p-xs rounded-lg border border-outline-variant">
+<span class="font-label-caps text-label-caps text-on-surface-variant px-2 py-1 bg-surface-container-highest rounded-full">
+                                    Scheduled
+                                </span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Today, 15:00</span>
+</div>
+<div class="flex justify-between items-center px-lg">
+<div class="flex flex-col items-center gap-sm">
+<div class="w-12 h-12 bg-white rounded-full p-1">
+<img alt="Liverpool Logo" class="w-full h-full object-contain" data-alt="A detailed, high resolution logo of a professional football team, featuring a red crest with a mythical bird, set against a dark premium UI backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1fK9en_ENBQ8aC_1qXn1OQCY4msvrBrbcYe9xSanJztRT-qrjmrIe0kufDVhQaZZGOE6HTf8GZlbacgokN_L1D72rWCCTlnrQLtAkgzYUjKQ1oN5w9KNZK6dpfT0vRWN1p_Ux70LECoR-S26z4atLHwsF8Fr4NQwct-q-gHCoDsA1-1KG9FCr1v16EkTQaY1bJSbe2g-gY4CkbqYBWihcWl4HLwflKdPo8K0SnrrNRPkv1yEQAmHL_4GE3o-2izZIzZQbVPelitI"/>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface">LIV</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="font-headline-lg text-headline-lg text-on-surface-variant tracking-widest">
+                                        V <span class="text-outline-variant mx-1"></span> S
+                                    </div>
+</div>
+<div class="flex flex-col items-center gap-sm">
+<div class="w-12 h-12 bg-white rounded-full p-1">
+<img alt="Man City Logo" class="w-full h-full object-contain" data-alt="A detailed, high resolution logo of a professional football team, featuring a sky blue circular crest with a ship, set against a dark premium UI backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1yTOVZYW6fnmWRgADftwzTdkb6o9VuWAykV3fNQIMuSZRcjf6-fbprSxdC-6WdKwz2vt2tol72JcykZRCtgUvvOMcrC6EerDbHLyC3LDfUtUOCtxmmG-uAvg_3qIOhBwn0yhkDH8u1lwtPRMZkmvTrL55acRUJXZFawDnQqazRyupeh_5odi4HSN8REgCq4iFv-ayyniKe8pzdzOzCCEb8B9MQbCNQNI-to1CWLVk2vqtt3VSXxEGpBBN3053HWfWhUGS4aW0Pes"/>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface">MCI</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Top Performers -->
+<div class="lg:col-span-4 flex flex-col gap-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Top Performers</h3>
+<div class="bg-surface-container border border-outline-variant rounded-xl overflow-hidden">
+<div class="bg-surface-container-highest p-md border-b border-outline-variant flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface">Top Scorers</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="sports_soccer">sports_soccer</span>
+</div>
+<ul class="flex flex-col">
+<li class="flex items-center justify-between p-md border-b border-outline-variant hover:bg-surface-variant transition-colors">
+<div class="flex items-center gap-md">
+<span class="font-label-caps text-label-caps text-primary w-4">1</span>
+<img alt="Player" class="w-8 h-8 rounded-full object-cover" data-alt="A headshot portrait of a professional male soccer player, looking determined, set against a dark premium UI backdrop, representing a top scorer profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1F0S4pSUlfBdQ8qPqYk7WrqSxl1W5HwcSWdJEXZ6ab4DP4GZAE4gJW667mDukxdxfjmfzo8e76CavS8inkA3SVRqyR3n7j0aPlcKmniI_fCaKsh68wb0xRYFLB8WCDhCubdYXx7TJ2u-7bnzinZFJVB_1N2HUft979GKP6g5JgFipin9hSrzRDtCoSsG1n72UgQjyUe8H-8fEZsTucUUn4WE6Wjr3eaeS9mKEEZivnmvUyWAK4pcAcfKoTvhwzunzGe8frPnycUk"/>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-bold">E. Haaland</p>
+<p class="font-data-table text-data-table text-on-surface-variant">MCI</p>
+</div>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface">18</span>
+</li>
+<li class="flex items-center justify-between p-md border-b border-outline-variant hover:bg-surface-variant transition-colors">
+<div class="flex items-center gap-md">
+<span class="font-label-caps text-label-caps text-on-surface-variant w-4">2</span>
+<img alt="Player" class="w-8 h-8 rounded-full object-cover" data-alt="A headshot portrait of a professional male soccer player, looking focused, set against a dark premium UI backdrop, representing a top scorer profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt2T6jAAo4i5vdqjQxyK9vb9C2xd-cHXaadTcqLKB5jaB3reCOi0mUu6hNuko2nB9hU9VZTkpn0p6B6qogRFBIbtgbA7u2GUKxvT0yXQvL3Ck77yBBuF0qh0HJGvNxPBCypR_FI54n8yd5k2-QuOGE7VlPGVOQk0eEE42TqHO34I70rWufbjqnvLtHpywdGjr6O3Y3PZ5rx5lFZzCGnMBKowxtV8PRmYZSQg-Dvw8rSuuGOJZaNFQyq5yQS6FSRlgyLDxw7rGxLzg"/>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-bold">M. Salah</p>
+<p class="font-data-table text-data-table text-on-surface-variant">LIV</p>
+</div>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface">15</span>
+</li>
+<li class="flex items-center justify-between p-md hover:bg-surface-variant transition-colors">
+<div class="flex items-center gap-md">
+<span class="font-label-caps text-label-caps text-on-surface-variant w-4">3</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="person">person</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-bold">O. Watkins</p>
+<p class="font-data-table text-data-table text-on-surface-variant">AVL</p>
+</div>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface">14</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-gutter py-base h-16 md:hidden bg-surface dark:bg-surface-container-low text-primary dark:text-primary docked full-width z-50 border-t border-outline-variant dark:border-outline-variant shadow-lg font-label-caps text-label-caps">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest animate-pulse" href="#">
+<span class="material-symbols-outlined" data-icon="sensors">sensors</span>
+<span class="mt-1">Live</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary bg-secondary-container/20 rounded-full px-4 py-1 active:bg-surface-container-highest" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard" data-weight="fill" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="mt-1">Leagues</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="mt-1">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest" href="#">
+<span class="material-symbols-outlined" data-icon="grade">grade</span>
+<span class="mt-1">Favs</span>
+</a>
+</nav>
+</body></html>

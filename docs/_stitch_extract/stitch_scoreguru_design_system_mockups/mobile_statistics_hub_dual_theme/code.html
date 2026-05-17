@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ScoreGuru - Mobile Statistics Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#690005",
+                        "inverse-surface": "#dce2f7",
+                        "secondary-fixed": "#ffdbca",
+                        "surface-container-high": "#232a3a",
+                        "on-surface": "#dce2f7",
+                        "surface": "#0c1322",
+                        "on-secondary-container": "#4a1c00",
+                        "surface-dim": "#0c1322",
+                        "secondary-fixed-dim": "#ffb690",
+                        "tertiary-fixed-dim": "#f7be1d",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#2c0051",
+                        "secondary": "#ffb690",
+                        "surface-bright": "#323949",
+                        "tertiary-fixed": "#ffdf9a",
+                        "inverse-on-surface": "#293040",
+                        "primary-container": "#9333ea",
+                        "outline": "#988ca0",
+                        "surface-container-highest": "#2e3545",
+                        "outline-variant": "#4d4354",
+                        "tertiary-container": "#866500",
+                        "background": "#0c1322",
+                        "on-primary-fixed-variant": "#6800b4",
+                        "inverse-primary": "#861fdd",
+                        "on-primary-container": "#f6e6ff",
+                        "on-tertiary-fixed": "#251a00",
+                        "on-background": "#dce2f7",
+                        "on-surface-variant": "#cfc2d7",
+                        "tertiary": "#f7be1d",
+                        "on-primary": "#490080",
+                        "surface-tint": "#ddb8ff",
+                        "on-tertiary-fixed-variant": "#5a4300",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#ddb8ff",
+                        "on-secondary": "#552100",
+                        "on-tertiary": "#3f2e00",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#070e1d",
+                        "on-secondary-fixed-variant": "#783200",
+                        "primary-fixed": "#f0dbff",
+                        "on-tertiary-container": "#ffe9bf",
+                        "surface-container": "#191f2f",
+                        "surface-variant": "#2e3545",
+                        "surface-container-low": "#141b2b",
+                        "primary": "#ddb8ff",
+                        "secondary-container": "#ec6a06",
+                        "on-secondary-fixed": "#341100"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "xl": "32px",
+                        "container-max": "1280px",
+                        "xs": "4px",
+                        "base": "4px",
+                        "gutter": "16px",
+                        "lg": "24px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "data-table": ["Inter"],
+                        "display": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "data-table": ["13px", { "lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #0c1322; color: #dce2f7; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24 font-body-md">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant flex justify-between items-center w-full px-xl h-16 sticky top-0 z-40">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary dark:text-primary" data-icon="sports_score">sports_score</span>
+<span class="font-headline-md text-headline-md font-extrabold text-primary dark:text-primary">ScoreGuru</span>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-2 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-full active:scale-95 duration-100">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+</button>
+<button class="p-2 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-full active:scale-95 duration-100">
+<span class="material-symbols-outlined" data-icon="contrast">contrast</span>
+</button>
+<button class="p-2 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded-full active:scale-95 duration-100">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="p-md flex flex-col gap-lg">
+<!-- Header & Date -->
+<section class="flex flex-col gap-xs">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Analytics Hub</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Last updated: Today, 14:30 EST</p>
+</section>
+<!-- Category Chips -->
+<section class="overflow-x-auto hide-scrollbar -mx-md px-md pb-xs">
+<div class="flex gap-sm whitespace-nowrap">
+<button class="px-4 py-2 rounded-full bg-primary-container text-on-primary-container font-label-caps text-label-caps border border-primary-container">Player Stats</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-label-caps border border-outline-variant hover:bg-surface-variant transition-colors">Team Stats</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-label-caps border border-outline-variant hover:bg-surface-variant transition-colors">Advanced Metrics</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-label-caps border border-outline-variant hover:bg-surface-variant transition-colors">Injuries</button>
+</div>
+</section>
+<!-- Bento Grid Stats -->
+<section class="grid grid-cols-2 gap-sm">
+<!-- Featured Stat -->
+<div class="col-span-2 bg-surface-container rounded-xl p-md border border-outline-variant relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/20 to-transparent pointer-events-none"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface">Top Scorer</h2>
+<span class="px-2 py-1 bg-secondary-container text-on-surface font-label-caps text-label-caps rounded-full text-[10px]">LIVE</span>
+</div>
+<div class="flex items-center gap-md">
+<img alt="Player Portrait" class="w-16 h-16 rounded-full border-2 border-primary object-cover" data-alt="A stylized portrait of a basketball player in action, illuminated by dramatic stadium lighting. The mood is intense and competitive, fitting the ScoreGuru dark mode aesthetic with deep shadows and sharp, high-contrast highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOWw7dxisalZiiB0qPpXVPSCFnA37_PZrABA0mXfCIlFhpMjKBFjPgIqId1ukIkK-iFCOSWQz3Vpo1BLzTvCXRRDOh6WQPjZEFUS8e108Ht756QIi1xDZHA9b9SP1d_gqD5xz_VlHXWsTMsRnqSti7a7eGEqpuiTyTBu5owGkApHewwR3uOBKMxS16y4UHUo64a34l2aB1AVXE83YqZHtWf-NuHq0_qtoVyXsQoQuHxcNwEixnAHMMkFQurN8BlZ4MbZ4upvc_JNw"/>
+<div>
+<p class="font-body-lg text-body-lg font-bold text-on-surface">J. Smith #23</p>
+<p class="font-body-md text-body-md text-on-surface-variant">LAL - SG</p>
+</div>
+<div class="ml-auto text-right">
+<p class="font-display text-display text-primary">32.5</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">PPG</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Mini Stat Cards -->
+<div class="bg-surface-container rounded-xl p-md border border-outline-variant flex flex-col gap-xs">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="assist_walker">assist_walker</span>
+<span class="font-label-caps text-label-caps">AST LDR</span>
+</div>
+<p class="font-headline-md text-headline-md text-on-surface">C. Paul</p>
+<div class="flex items-end gap-1 mt-auto">
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-tertiary">10.8</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">APG</p>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl p-md border border-outline-variant flex flex-col gap-xs">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="sports_basketball">sports_basketball</span>
+<span class="font-label-caps text-label-caps">REB LDR</span>
+</div>
+<p class="font-headline-md text-headline-md text-on-surface">N. Jokic</p>
+<div class="flex items-end gap-1 mt-auto">
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-secondary">13.2</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">RPG</p>
+</div>
+</div>
+</section>
+<!-- Leaderboard Table -->
+<section class="bg-surface-container rounded-xl border border-outline-variant overflow-hidden">
+<div class="p-md border-b border-outline-variant bg-surface-bright flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">MVP Race</h3>
+<button class="text-primary font-label-caps text-label-caps flex items-center gap-1">
+                    VIEW ALL <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant text-on-surface-variant font-label-caps text-label-caps">
+<th class="p-sm font-medium">RK</th>
+<th class="p-sm font-medium">PLAYER</th>
+<th class="p-sm font-medium text-right">PTS</th>
+<th class="p-sm font-medium text-right">REB</th>
+<th class="p-sm font-medium text-right">AST</th>
+</tr>
+</thead>
+<tbody class="font-data-table text-data-table text-on-surface">
+<tr class="border-b border-outline-variant/50 hover:bg-surface-variant transition-colors">
+<td class="p-sm text-center text-primary font-bold">1</td>
+<td class="p-sm flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-[10px]">NJ</div>
+<span>N. Jokic</span>
+</td>
+<td class="p-sm text-right">26.1</td>
+<td class="p-sm text-right">12.3</td>
+<td class="p-sm text-right">9.0</td>
+</tr>
+<tr class="border-b border-outline-variant/50 hover:bg-surface-variant transition-colors">
+<td class="p-sm text-center">2</td>
+<td class="p-sm flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center text-[10px]">SGA</div>
+<span>S. Gilgeous-Alexander</span>
+</td>
+<td class="p-sm text-right">30.4</td>
+<td class="p-sm text-right">5.6</td>
+<td class="p-sm text-right">6.3</td>
+</tr>
+<tr class="hover:bg-surface-variant transition-colors">
+<td class="p-sm text-center">3</td>
+<td class="p-sm flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center text-[10px]">LD</div>
+<span>L. Doncic</span>
+</td>
+<td class="p-sm text-right">34.2</td>
+<td class="p-sm text-right">8.8</td>
+<td class="p-sm text-right">9.8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-surface dark:bg-surface-container-low border-t border-outline-variant dark:border-outline-variant shadow-lg fixed bottom-0 left-0 w-full flex justify-around items-center px-gutter py-base h-16 md:hidden z-50">
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest rounded-lg p-2 transition-colors">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps mt-1 text-[10px]">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest rounded-lg p-2 transition-colors">
+<span class="material-symbols-outlined animate-pulse text-secondary-container" data-icon="sensors">sensors</span>
+<span class="font-label-caps text-label-caps mt-1 text-[10px]">Live</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest rounded-lg p-2 transition-colors">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-label-caps text-label-caps mt-1 text-[10px]">Leagues</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary dark:text-primary bg-secondary-container/20 rounded-full px-4 py-1">
+<span class="material-symbols-outlined" data-icon="analytics" data-weight="fill" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-caps text-label-caps mt-1 text-[10px]">Stats</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest rounded-lg p-2 transition-colors">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-caps text-label-caps mt-1 text-[10px]">Search</span>
+</button>
+</nav>
+</body></html>
