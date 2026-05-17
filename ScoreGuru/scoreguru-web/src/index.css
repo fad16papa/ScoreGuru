@@ -1,0 +1,80 @@
+@import 'tailwindcss';
+
+/* class-based dark mode (html gets .dark) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  ScoreGuru design tokens — source: docs/design/mvp-design-system.md
+  Brand & structural colors (constant across themes)
+*/
+:root {
+  --cr-purple: #9333ea;
+  --cr-purple-dark: #7e22ce;
+  --cr-orange: #f97316;
+  --cr-yellow: #eab308;
+
+  --cr-bg-light: #f6f7fb;
+  --cr-surface-light: #ffffff;
+  --cr-text-dark: #111827;
+  --cr-muted: #6b7280;
+  --cr-border-light: #e5e7eb;
+
+  --cr-bg-dark: #0b1020;
+  --cr-surface-dark: #111827;
+  --cr-surface-dark-2: #1f2937;
+  --cr-border-dark: #374151;
+  --cr-text-light: #f9fafb;
+  --cr-muted-dark: #9ca3af;
+
+  --cr-primary-fg-on-primary: #ffffff;
+}
+
+@theme inline {
+  --font-jakarta: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-inter: Inter, ui-sans-serif, system-ui, sans-serif;
+
+  --color-cr-purple: var(--cr-purple);
+  --color-cr-purple-dark: var(--cr-purple-dark);
+  --color-cr-orange: var(--cr-orange);
+  --color-cr-yellow: var(--cr-yellow);
+  --color-cr-bg-light: var(--cr-bg-light);
+  --color-cr-surface-light: var(--cr-surface-light);
+  --color-cr-text-dark: var(--cr-text-dark);
+  --color-cr-muted: var(--cr-muted);
+  --color-cr-border-light: var(--cr-border-light);
+  --color-cr-bg-dark: var(--cr-bg-dark);
+  --color-cr-surface-dark: var(--cr-surface-dark);
+  --color-cr-surface-dark-2: var(--cr-surface-dark-2);
+  --color-cr-border-dark: var(--cr-border-dark);
+  --color-cr-text-light: var(--cr-text-light);
+  --color-cr-muted-dark: var(--cr-muted-dark);
+  --color-cr-primary-fg-on-primary: var(--cr-primary-fg-on-primary);
+}
+
+/* Base document — Inter for UI; Jakarta used on headings/scores in components */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  font-family: var(--font-inter);
+  background-color: var(--cr-bg-light);
+  color: var(--cr-text-dark);
+}
+
+html.dark body {
+  background-color: var(--cr-bg-dark);
+  color: var(--cr-text-light);
+}
+
+#root {
+  min-height: 100svh;
+  width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--cr-purple) 40%, transparent);
+  outline-offset: 2px;
+}
