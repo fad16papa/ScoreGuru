@@ -1,4 +1,6 @@
+import { SignedIn } from '@clerk/clerk-react'
 import { Link } from 'react-router-dom'
+import { DesktopSessionControls } from './SessionControls'
 import { SearchInput } from '../shared/SearchInput'
 import { ThemeToggle } from '../shared/ThemeToggle'
 
@@ -39,13 +41,15 @@ export function AppHeader() {
           </svg>
           <span className="absolute right-2 top-2 size-2 rounded-full bg-cr-orange" />
         </button>
-        <Link
-          to="/settings"
-          className="inline-flex size-11 items-center justify-center rounded-full border border-cr-border-light bg-cr-bg-light font-inter text-sm font-bold text-cr-muted transition-colors hover:border-cr-purple-dark dark:border-cr-border-dark dark:bg-cr-surface-dark-2 dark:text-cr-muted-dark"
-          aria-label="Profile placeholder"
-        >
-          SG
-        </Link>
+        <SignedIn>
+          <Link
+            to="/settings"
+            className="inline-flex min-h-11 items-center justify-center rounded-lg border border-cr-border-light bg-cr-bg-light px-3 font-inter text-xs font-semibold text-cr-muted transition-colors hover:border-cr-purple-dark hover:text-cr-text-dark dark:border-cr-border-dark dark:bg-cr-surface-dark-2 dark:text-cr-muted-dark dark:hover:text-cr-text-light"
+          >
+            Settings
+          </Link>
+        </SignedIn>
+        <DesktopSessionControls />
       </div>
     </header>
   )

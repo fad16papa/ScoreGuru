@@ -5,6 +5,7 @@ import { MobileHeader } from './MobileHeader'
 import { WebSidebar } from './WebSidebar'
 import { getMobileHeaderTitle, mobileBottomNav, sidebarNav } from './navigationConfig'
 import { ThemeToggle } from '../shared/ThemeToggle'
+import { MobileSessionControls } from './SessionControls'
 
 export function AppShell() {
   const { pathname } = useLocation()
@@ -17,7 +18,10 @@ export function AppShell() {
         <MobileHeader
           title={title}
           rightSlot={
-            <ThemeToggle className="!border-0 bg-transparent hover:bg-cr-border-light/30 dark:hover:bg-cr-surface-dark-2" />
+            <>
+              <MobileSessionControls />
+              <ThemeToggle className="!border-0 bg-transparent hover:bg-cr-border-light/30 dark:hover:bg-cr-surface-dark-2" />
+            </>
           }
         />
         <AppHeader />

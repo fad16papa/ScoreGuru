@@ -33,6 +33,7 @@ export const mobileBottomNav: BottomNavItem[] = [
 
 export const routeTitles: Record<string, string> = {
   '/': 'Scores',
+  '/live': 'Live',
   '/live-scores': 'Live',
   '/leagues': 'Leagues',
   '/standings': 'Standings',
