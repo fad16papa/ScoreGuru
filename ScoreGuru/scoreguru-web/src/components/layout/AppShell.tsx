@@ -4,7 +4,7 @@ import { MobileBottomNav } from './MobileBottomNav'
 import { MobileHeader } from './MobileHeader'
 import { WebSidebar } from './WebSidebar'
 import { getMobileHeaderTitle, mobileBottomNav, sidebarNav } from './navigationConfig'
-import { ThemeToggle } from '../shared/ThemeToggle'
+import { ThemeToggleWithBackend } from '../shared/ThemeToggleWithBackend'
 import { MobileSessionControls } from './SessionControls'
 
 export function AppShell() {
@@ -20,7 +20,7 @@ export function AppShell() {
           rightSlot={
             <>
               <MobileSessionControls />
-              <ThemeToggle className="!border-0 bg-transparent hover:bg-cr-border-light/30 dark:hover:bg-cr-surface-dark-2" />
+              <ThemeToggleWithBackend className="!border-0 bg-transparent hover:bg-cr-border-light/30 dark:hover:bg-cr-surface-dark-2" />
             </>
           }
         />

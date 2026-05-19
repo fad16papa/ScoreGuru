@@ -61,11 +61,21 @@ function iconFor(p: ThemePreference) {
 type ThemeToggleProps = {
   mode?: 'cycle' | 'menu'
   className?: string
+  onPreferenceChange?: (preference: ThemePreference) => void
 }
 
-export function ThemeToggle({ mode = 'cycle', className = '' }: ThemeToggleProps) {
+export function ThemeToggle({
+  mode = 'cycle',
+  className = '',
+  onPreferenceChange,
+}: ThemeToggleProps) {
   const dispatch = useAppDispatch()
   const preference = useAppSelector((s) => s.theme.preference)
+
+  const applyPreference = (p: ThemePreference): void => {
+    dispatch(setThemePreference(p))
+    onPreferenceChange?.(p)
+  }
 
   if (mode === 'menu') {
     return (
@@ -80,7 +90,7 @@ export function ThemeToggle({ mode = 'cycle', className = '' }: ThemeToggleProps
                 ? 'bg-cr-purple text-cr-primary-fg-on-primary'
                 : 'text-cr-muted hover:bg-cr-border-light/50 dark:text-cr-muted-dark dark:hover:bg-cr-surface-dark-2',
             ].join(' ')}
-            onClick={() => dispatch(setThemePreference(p))}
+            onClick={() => applyPreference(p)}
           >
             {labelFor(p)}
           </button>
@@ -92,7 +102,7 @@ export function ThemeToggle({ mode = 'cycle', className = '' }: ThemeToggleProps
   const next = (): void => {
     const i = order.indexOf(preference)
     const np = order[(i + 1) % order.length]
-    dispatch(setThemePreference(np))
+    applyPreference(np)
   }
 
   return (

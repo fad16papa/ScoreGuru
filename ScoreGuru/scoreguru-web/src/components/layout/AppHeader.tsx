@@ -2,7 +2,7 @@ import { SignedIn } from '@clerk/clerk-react'
 import { Link } from 'react-router-dom'
 import { DesktopSessionControls } from './SessionControls'
 import { SearchInput } from '../shared/SearchInput'
-import { ThemeToggle } from '../shared/ThemeToggle'
+import { ThemeToggleWithBackend } from '../shared/ThemeToggleWithBackend'
 
 export function AppHeader() {
   return (
@@ -25,7 +25,7 @@ export function AppHeader() {
         >
           Today
         </button>
-        <ThemeToggle />
+        <ThemeToggleWithBackend />
         <button
           type="button"
           className="relative inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-cr-border-light text-cr-text-dark transition-colors hover:bg-cr-bg-light dark:border-cr-border-dark dark:text-cr-text-light dark:hover:bg-cr-surface-dark-2"
