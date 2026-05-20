@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom'
 import { ProtectedRoute } from './auth/ProtectedRoute'
 import { AppShell } from './components/layout/AppShell'
+import { GameDetailsPage } from './pages/GameDetailsPage'
+import { LeagueDetailsPage } from './pages/LeagueDetailsPage'
 import {
-  GameDetailPlaceholderPage,
-  LeagueDetailPlaceholderPage,
   PlayerDetailPlaceholderPage,
   TeamDetailPlaceholderPage,
 } from './pages/DetailPlaceholderPages'
@@ -36,8 +36,8 @@ export function AppRoutes() {
         <Route path="/teams" element={<TeamsPage />} />
         <Route path="/players" element={<PlayersPage />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/games/:gameId" element={<GameDetailPlaceholderPage />} />
-        <Route path="/leagues/:leagueId" element={<LeagueDetailPlaceholderPage />} />
+        <Route path="/games/:gameId" element={<GameDetailsPage />} />
+        <Route path="/leagues/:leagueId" element={<LeagueDetailsPage />} />
         <Route path="/teams/:teamId" element={<TeamDetailPlaceholderPage />} />
         <Route path="/players/:playerId" element={<PlayerDetailPlaceholderPage />} />
         <Route element={<ProtectedRoute />}>

@@ -5,12 +5,24 @@ import type {
   UpdateUserProfileRequest,
   UserProfileDto,
 } from './types/profileTypes'
+import type {
+  FootballLeaguesParams,
+  FootballStandingsParams,
+  FootballTeamsParams,
+  GameDetailsDto,
+  GameSummaryDto,
+  LeagueDto,
+  LeagueStandingsDto,
+  SportDto,
+  TeamDto,
+  TodayFootballScoresParams,
+} from './types/sportsTypes'
 import { scoreGuruBaseQuery } from './scoreGuruBaseQuery'
 
 export const scoreGuruApi = createApi({
   reducerPath: 'scoreGuruApi',
   baseQuery: scoreGuruBaseQuery,
-  tagTypes: ['AuthMe', 'Profile'],
+  tagTypes: ['AuthMe', 'Profile', 'Sports', 'Football'],
   endpoints: (build) => ({
     getAuthMe: build.query<MeResponse, void>({
       query: () => '/auth/me',
@@ -36,6 +48,48 @@ export const scoreGuruApi = createApi({
       }),
       invalidatesTags: ['Profile', 'AuthMe'],
     }),
+    getSports: build.query<SportDto[], void>({
+      query: () => '/sports',
+      providesTags: ['Sports'],
+    }),
+    getFootballLeagues: build.query<LeagueDto[], FootballLeaguesParams | void>({
+      query: (params) => ({
+        url: '/football/leagues',
+        params: params ?? {},
+      }),
+      providesTags: ['Football'],
+    }),
+    getLiveFootballScores: build.query<GameSummaryDto[], void>({
+      query: () => '/football/scores/live',
+      providesTags: ['Football'],
+    }),
+    getTodayFootballScores: build.query<GameSummaryDto[], TodayFootballScoresParams | void>({
+      query: (params) => ({
+        url: '/football/scores/today',
+        params: params ?? {},
+      }),
+      providesTags: ['Football'],
+    }),
+    getFootballGameDetails: build.query<GameDetailsDto, number>({
+      query: (gameId) => `/football/games/${gameId}`,
+      providesTags: (_result, _error, gameId) => [{ type: 'Football', id: `game-${gameId}` }],
+    }),
+    getFootballStandings: build.query<LeagueStandingsDto, FootballStandingsParams>({
+      query: ({ league, season }) => ({
+        url: '/football/standings',
+        params: { league, season },
+      }),
+      providesTags: (_result, _error, { league, season }) => [
+        { type: 'Football', id: `standings-${league}-${season}` },
+      ],
+    }),
+    getFootballTeams: build.query<TeamDto[], FootballTeamsParams | void>({
+      query: (params) => ({
+        url: '/football/teams',
+        params: params ?? {},
+      }),
+      providesTags: ['Football'],
+    }),
   }),
 })
 
@@ -44,4 +98,11 @@ export const {
   useGetMyProfileQuery,
   useUpdateMyProfileMutation,
   useUpdateMyThemeMutation,
+  useGetSportsQuery,
+  useGetFootballLeaguesQuery,
+  useGetLiveFootballScoresQuery,
+  useGetTodayFootballScoresQuery,
+  useGetFootballGameDetailsQuery,
+  useGetFootballStandingsQuery,
+  useGetFootballTeamsQuery,
 } = scoreGuruApi

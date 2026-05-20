@@ -21,5 +21,14 @@ export const scoreGuruBaseQuery: BaseQueryFn<
   unknown,
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
-  return rawBaseQuery(args, api, extraOptions)
+  const result = await rawBaseQuery(args, api, extraOptions)
+
+  if (import.meta.env.DEV && result.meta?.response) {
+    const source = result.meta.response.headers.get('X-ScoreGuru-Data-Source')
+    if (source) {
+      console.debug('[ScoreGuru] data source:', source)
+    }
+  }
+
+  return result
 }
