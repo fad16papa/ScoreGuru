@@ -4,6 +4,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>scoreguru-api-7c4f9a2e-1b3d-4e8f-9a6c-2d5e8f1a4b7c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

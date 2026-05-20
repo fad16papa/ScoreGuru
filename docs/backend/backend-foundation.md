@@ -57,6 +57,9 @@ Defaults live in `backend/ScoreGuru.Api/appsettings.Development.json`. Override 
 | `Clerk__JwksUrl` | Optional metadata override | leave empty to use Authority discovery |
 | `Clerk__Audience` | JWT audience (if required) | from Clerk Dashboard |
 | `Cors__AllowedOrigins__0` | CORS origin | `http://localhost:5173` |
+| `ApiSports__ApiKey` | API-FOOTBALL key | user secrets only |
+| `ApiSports__FootballBaseUrl` | API-FOOTBALL base URL | `https://v3.football.api-sports.io` |
+| `ApiSports__UseMockDataWhenMissingKey` | Dev mock when key empty | `true` in Development |
 
 **Do not commit real Clerk secrets.** Use User Secrets locally:
 
@@ -149,7 +152,7 @@ Protected routes:
 - **Clerk** issues JWTs; the API validates them (no password login, no register/login endpoints).
 - **PostgreSQL** is the source of truth for ScoreGuru user data.
 - **Identity** stores users/roles schema; primary login tokens are **not** issued by .NET Identity.
-- **Redis** is registered (`IConnectionMultiplexer`) for future caching; not used for business logic yet.
+- **Redis** is registered (`IConnectionMultiplexer`) and used for API-SPORTS response caching. See [api-sports-integration.md](./api-sports-integration.md).
 
 ## Build
 
