@@ -143,6 +143,8 @@ Logs include: `API-SPORTS mock football provider is active`.
 | `api-sports:football:standings:{league}:{season}` | 15 minutes |
 | `api-sports:football:teams:{league}:{season}:{country}` | 12 hours |
 
+Redis reduces provider calls but **does not eliminate quota risk** when many clients poll before TTL expires. See [score-pages.md](../frontend/score-pages.md): frontend live polling is **disabled by default** (`VITE_SCOREGURU_ENABLE_LIVE_POLLING=false`, minimum 60s interval when enabled).
+
 ## Provider components
 
 | Type | Role |
@@ -163,8 +165,7 @@ Logs include: `API-SPORTS mock football provider is active`.
 
 ## Intentionally Phase 2 (not implemented)
 
-- React score UI / RTK Query sports hooks
-- Background worker polling
+- Background worker polling (centralized refresh instead of browser polling)
 - Multi-sport providers (basketball, tennis, etc.)
 - Advanced Statistics Hub / analytics
 - Favorites persistence for games/teams

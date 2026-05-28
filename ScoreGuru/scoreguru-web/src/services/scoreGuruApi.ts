@@ -23,6 +23,8 @@ export const scoreGuruApi = createApi({
   reducerPath: 'scoreGuruApi',
   baseQuery: scoreGuruBaseQuery,
   tagTypes: ['AuthMe', 'Profile', 'Sports', 'Football'],
+  refetchOnFocus: true,
+  refetchOnReconnect: true,
   endpoints: (build) => ({
     getAuthMe: build.query<MeResponse, void>({
       query: () => '/auth/me',

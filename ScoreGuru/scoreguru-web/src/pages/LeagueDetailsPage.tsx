@@ -3,9 +3,12 @@ import { useParams } from 'react-router-dom'
 import { PageContainer } from '../components/layout/PageContainer'
 import { ScoresByLeague } from '../features/scores/ScoresByLeague'
 import { ScoresDataStates } from '../features/scores/ScoresDataStates'
+import { getScoreQueryOptions } from '../features/scores/queryOptions'
 import { todayDateString } from '../features/scores/sportsUtils'
 import { Card } from '../components/shared/Card'
+import { DateSelector } from '../components/shared/DateSelector'
 import { EmptyState } from '../components/shared/EmptyState'
+import { RefreshControl } from '../components/shared/RefreshControl'
 import { Tabs } from '../components/shared/Tabs'
 import { MobileStandingsTable } from '../components/standings/MobileStandingsTable'
 import { StandingsTable } from '../components/standings/StandingsTable'
@@ -24,6 +27,7 @@ export function LeagueDetailsPage() {
   const leagueNum = Number.parseInt(leagueId, 10)
   const [tab, setTab] = useState('games')
   const [season, setSeason] = useState(String(DEFAULT_SEASON))
+  const [selectedDate, setSelectedDate] = useState(todayDateString)
   const seasonNum = Number.parseInt(season, 10)
 
   const leaguesQuery = useGetFootballLeaguesQuery({ season: DEFAULT_SEASON })
@@ -31,11 +35,11 @@ export function LeagueDetailsPage() {
 
   const todayQuery = useGetTodayFootballScoresQuery(
     {
-      date: todayDateString(),
+      date: selectedDate,
       league: leagueNum,
       season: Number.isFinite(seasonNum) ? seasonNum : undefined,
     },
-    { skip: !Number.isFinite(leagueNum) },
+    getScoreQueryOptions(!Number.isFinite(leagueNum)),
   )
 
   const standingsQuery = useGetFootballStandingsQuery(
@@ -55,16 +59,26 @@ export function LeagueDetailsPage() {
       id: 'games',
       label: 'Games',
       content: (
-        <ScoresDataStates
-          isLoading={todayQuery.isLoading}
-          isError={todayQuery.isError}
-          isEmpty={!todayQuery.isLoading && games.length === 0}
-          onRetry={todayQuery.refetch}
-          emptyTitle="No games today"
-          emptyDescription="No fixtures for this league on today's date."
-        >
-          <ScoresByLeague games={games} />
-        </ScoresDataStates>
+        <div className="space-y-4">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <DateSelector value={selectedDate} onChange={setSelectedDate} />
+            <RefreshControl
+              onRefresh={() => void todayQuery.refetch()}
+              isRefreshing={todayQuery.isFetching}
+              lastUpdatedMs={todayQuery.fulfilledTimeStamp}
+            />
+          </div>
+          <ScoresDataStates
+            isLoading={todayQuery.isLoading && !todayQuery.data}
+            isError={todayQuery.isError}
+            isEmpty={!todayQuery.isLoading && games.length === 0}
+            onRetry={() => void todayQuery.refetch()}
+            emptyTitle="No games on this date"
+            emptyDescription="No fixtures for this league on the selected date."
+          >
+            <ScoresByLeague games={games} />
+          </ScoresDataStates>
+        </div>
       ),
     },
     {
@@ -150,7 +164,12 @@ function StandingsTab({
 
   return (
     <div className="space-y-4">
-      <SeasonInput season={season} setSeason={setSeason} />
+      <SeasonFilter season={season} setSeason={setSeason} />
+      <RefreshControl
+        onRefresh={() => void standingsQuery.refetch()}
+        isRefreshing={standingsQuery.isFetching}
+        lastUpdatedMs={standingsQuery.fulfilledTimeStamp}
+      />
       <div className="hidden md:block">
         <StandingsTable rows={standingsQuery.data.rows} />
       </div>
@@ -194,7 +213,12 @@ function TeamsTab({
 
   return (
     <div className="space-y-4">
-      <SeasonInput season={season} setSeason={setSeason} />
+      <SeasonFilter season={season} setSeason={setSeason} />
+      <RefreshControl
+        onRefresh={() => void teamsQuery.refetch()}
+        isRefreshing={teamsQuery.isFetching}
+        lastUpdatedMs={teamsQuery.fulfilledTimeStamp}
+      />
       {teams.length === 0 ? (
         <EmptyState title="No teams" description="No teams returned for this league and season." />
       ) : (
@@ -215,16 +239,22 @@ function TeamsTab({
   )
 }
 
-function SeasonInput({ season, setSeason }: { season: string; setSeason: (v: string) => void }) {
+function SeasonFilter({ season, setSeason }: { season: string; setSeason: (v: string) => void }) {
   return (
-    <label className="flex max-w-xs flex-col gap-1 font-inter text-xs font-medium text-cr-muted">
-      Season
+    <label className="flex max-w-xs flex-col gap-1">
+      <span className="font-inter text-xs font-semibold text-cr-text-dark dark:text-cr-text-light">
+        Season
+      </span>
       <input
         type="text"
+        inputMode="numeric"
         value={season}
         onChange={(e) => setSeason(e.target.value)}
-        className="min-h-10 rounded-lg border border-cr-border-light bg-cr-surface-light px-3 text-sm dark:border-cr-border-dark dark:bg-cr-surface-dark dark:text-cr-text-light"
+        className="min-h-10 rounded-lg border border-cr-border-light bg-cr-surface-light px-3 font-inter text-sm dark:border-cr-border-dark dark:bg-cr-surface-dark dark:text-cr-text-light"
       />
+      <span className="font-inter text-[11px] text-cr-muted dark:text-cr-muted-dark">
+        Required for standings and teams (e.g. 2024).
+      </span>
     </label>
   )
 }
