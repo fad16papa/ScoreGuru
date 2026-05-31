@@ -76,12 +76,16 @@ Default: **http://localhost:5000**
 | Method | Path | Description |
 |--------|------|-------------|
 | GET | `/api/sports` | Supported sports (`football` only for MVP) |
+| GET | `/api/football/countries` | Countries as `CountryDto[]` |
 | GET | `/api/football/leagues` | Leagues (`country`, `season` optional) |
 | GET | `/api/football/scores/live` | Live fixtures as `GameSummaryDto[]` |
 | GET | `/api/football/scores/today` | Fixtures by date (`date` yyyy-MM-dd, `league`, `season` optional) |
 | GET | `/api/football/games/{gameId}` | `GameDetailsDto` (summary, events, statistics) |
 | GET | `/api/football/standings` | `LeagueStandingsDto` (`league`, `season` required) |
 | GET | `/api/football/teams` | Teams (`league`, `season`, `country` optional) |
+| GET | `/api/football/teams/{teamId}/players` | `TeamRosterDto` (`season` optional) |
+| GET | `/api/football/players/{playerId}` | `PlayerDto` (`season`, `team`, `league` optional) |
+| GET | `/api/football/players` | `PlayerDto[]` (`team`, `league`, `season`, `search` optional) |
 
 Sports endpoints are **public** (no Clerk token required for MVP reads).
 
@@ -136,12 +140,14 @@ Logs include: `API-SPORTS mock football provider is active`.
 
 | Cache key pattern | TTL |
 |-------------------|-----|
+| `api-sports:football:countries` | 24 hours |
 | `api-sports:football:leagues:{country}:{season}` | 12 hours |
 | `api-sports:football:scores:live` | 20 seconds |
 | `api-sports:football:scores:today:{date}:{league}:{season}` | 60 seconds |
 | `api-sports:football:games:{gameId}` | 30s live / 15m finished |
 | `api-sports:football:standings:{league}:{season}` | 15 minutes |
 | `api-sports:football:teams:{league}:{season}:{country}` | 12 hours |
+| `api-sports:football:players:by-id:{playerId}:{season}:{teamId}:{leagueId}` | 12 hours |
 
 Redis reduces provider calls but **does not eliminate quota risk** when many clients poll before TTL expires. See [score-pages.md](../frontend/score-pages.md): frontend live polling is **disabled by default** (`VITE_SCOREGURU_ENABLE_LIVE_POLLING=false`, minimum 60s interval when enabled).
 

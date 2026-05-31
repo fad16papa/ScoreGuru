@@ -1,25 +1,32 @@
 import { useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { PageContainer } from '../components/layout/PageContainer'
-import { LeagueSeasonFilters } from '../components/shared/LeagueSeasonFilters'
-import { PREMIER_LEAGUE_PRESET } from '../features/scores/leaguePresets'
+import { CountryLeagueSeasonSelector } from '../components/shared/CountryLeagueSeasonSelector'
+import { getPremierLeaguePreset } from '../features/scores/leaguePresets'
 import { EmptyState } from '../components/shared/EmptyState'
 import { RefreshControl } from '../components/shared/RefreshControl'
 import { Skeleton } from '../components/shared/Skeleton'
 import { MobileStandingsTable } from '../components/standings/MobileStandingsTable'
 import { StandingsTable } from '../components/standings/StandingsTable'
 import { getScoreQueryOptions } from '../features/scores/queryOptions'
+import {
+  formatFootballSeasonLabel,
+  getPreviousFootballSeasonYear,
+  SEASON_UNAVAILABLE_HINT,
+} from '../features/scores/seasonUtils'
 import { useGetFootballStandingsQuery } from '../services/scoreGuruApi'
 
 export function StandingsPage() {
   const [searchParams] = useSearchParams()
-  const initialLeague = searchParams.get('league') ?? PREMIER_LEAGUE_PRESET.league
-  const initialSeason = searchParams.get('season') ?? PREMIER_LEAGUE_PRESET.season
+  const preset = getPremierLeaguePreset()
+  const initialLeague = searchParams.get('league') ?? preset.league
+  const initialSeason = searchParams.get('season') ?? preset.season
 
-  const [league, setLeague] = useState(initialLeague)
+  const [country, setCountry] = useState<string>(preset.country)
+  const [leagueId, setLeagueId] = useState(initialLeague)
   const [season, setSeason] = useState(initialSeason)
 
-  const leagueNum = Number.parseInt(league, 10)
+  const leagueNum = Number.parseInt(leagueId, 10)
   const seasonNum = Number.parseInt(season, 10)
   const valid = Number.isFinite(leagueNum) && Number.isFinite(seasonNum)
 
@@ -29,15 +36,22 @@ export function StandingsPage() {
       getScoreQueryOptions(!valid),
     )
 
-  const title = useMemo(
-    () => (data ? `${data.leagueName} · ${data.season}` : 'Standings'),
-    [data],
-  )
+  const tryPreviousSeason = () => {
+    if (!valid) return
+    setSeason(String(getPreviousFootballSeasonYear(seasonNum)))
+  }
+
+  const title = useMemo(() => {
+    if (data) {
+      return `${data.leagueName} · ${formatFootballSeasonLabel(data.season)}`
+    }
+    return 'Standings'
+  }, [data])
 
   return (
     <PageContainer
       title={title}
-      description="Football league table. Use league id and season year."
+      description="Football league table by country, league, and season."
       actions={
         valid ? (
           <RefreshControl
@@ -49,10 +63,12 @@ export function StandingsPage() {
       }
     >
       <div className="mb-6">
-        <LeagueSeasonFilters
-          league={league}
+        <CountryLeagueSeasonSelector
+          country={country}
+          leagueId={leagueId}
           season={season}
-          onLeagueChange={setLeague}
+          onCountryChange={setCountry}
+          onLeagueIdChange={setLeagueId}
           onSeasonChange={setSeason}
         />
       </div>
@@ -60,19 +76,26 @@ export function StandingsPage() {
       {!valid ? (
         <EmptyState
           title="Invalid filters"
-          description="Enter numeric league and season, or use the Premier League preset."
+          description="Choose a country, league, and season, or use the Premier League preset."
         />
       ) : isLoading && !data ? (
         <Skeleton className="h-64 w-full" />
       ) : isError ? (
         <EmptyState
           title="Could not load standings"
-          description="Check API availability and league/season values."
+          description="Check API availability and try again."
           actionLabel="Try again"
           onAction={() => void refetch()}
+          secondaryActionLabel="Try previous season"
+          onSecondaryAction={tryPreviousSeason}
         />
       ) : !data || data.rows.length === 0 ? (
-        <EmptyState title="No standings" description="No table rows for this league and season." />
+        <EmptyState
+          title="No standings"
+          description={`No table rows for this league and season. ${SEASON_UNAVAILABLE_HINT}`}
+          secondaryActionLabel="Try previous season"
+          onSecondaryAction={tryPreviousSeason}
+        />
       ) : (
         <>
           <div className="hidden md:block">

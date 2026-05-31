@@ -8,6 +8,8 @@ public interface IFootballScoreProvider
 
     Task<IReadOnlyList<SportDto>> GetSupportedSportsAsync(CancellationToken cancellationToken = default);
 
+    Task<IReadOnlyList<CountryDto>> GetCountriesAsync(CancellationToken cancellationToken = default);
+
     Task<IReadOnlyList<LeagueDto>> GetLeaguesAsync(
         string? country,
         int? season,
@@ -32,5 +34,24 @@ public interface IFootballScoreProvider
         int? league,
         int? season,
         string? country,
+        CancellationToken cancellationToken = default);
+
+    Task<TeamRosterDto?> GetTeamRosterAsync(
+        int teamId,
+        int? season,
+        CancellationToken cancellationToken = default);
+
+    Task<IReadOnlyList<PlayerDto>> GetPlayersAsync(
+        int? teamId,
+        int? league,
+        int? season,
+        string? search,
+        CancellationToken cancellationToken = default);
+
+    Task<PlayerDto?> GetPlayerByIdAsync(
+        int playerId,
+        int? season,
+        int? teamId,
+        int? leagueId,
         CancellationToken cancellationToken = default);
 }

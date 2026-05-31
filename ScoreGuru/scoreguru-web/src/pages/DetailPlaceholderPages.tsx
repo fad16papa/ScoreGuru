@@ -39,12 +39,6 @@ const leagueCopy: PlaceholderCopy = {
   body: 'Season selector, fixtures by date, standings snapshot, and squad lists will appear in this workspace.',
 }
 
-const teamCopy: PlaceholderCopy = {
-  title: 'Team details',
-  heading: 'Team Details coming soon',
-  body: 'Club header, form, upcoming fixtures, recent results, and basic team statistics will render here.',
-}
-
 const playerCopy: PlaceholderCopy = {
   title: 'Player details',
   heading: 'Player Details coming soon',
@@ -59,11 +53,6 @@ export function GameDetailPlaceholderPage() {
 export function LeagueDetailPlaceholderPage() {
   const { leagueId = '' } = useParams<{ leagueId: string }>()
   return <DetailPlaceholder copy={leagueCopy} idParam={leagueId} />
-}
-
-export function TeamDetailPlaceholderPage() {
-  const { teamId = '' } = useParams<{ teamId: string }>()
-  return <DetailPlaceholder copy={teamCopy} idParam={teamId} />
 }
 
 export function PlayerDetailPlaceholderPage() {

@@ -10,6 +10,14 @@ public static class FootballDataNormalizer
         new SportDto { Key = "football", Name = "Football" }
     ];
 
+    public static CountryDto ToCountryDto(ApiSportsCountryItem item) =>
+        new()
+        {
+            Name = item.Name ?? string.Empty,
+            Code = item.Code,
+            FlagUrl = item.Flag,
+        };
+
     public static LeagueDto ToLeagueDto(ApiSportsLeagueItem item, int? seasonFilter)
     {
         var season = seasonFilter ?? item.Seasons?.OrderByDescending(s => s.Year).FirstOrDefault()?.Year;
@@ -183,6 +191,74 @@ public static class FootballDataNormalizer
             LogoUrl = item.Team?.Logo,
             Country = item.Team?.Country,
         };
+
+    public static TeamRosterDto? ToTeamRosterDto(ApiSportsSquadItem item, int? season)
+    {
+        var team = item.Team;
+        if (team?.Id is null or 0)
+        {
+            return null;
+        }
+
+        var players = item.Players?
+            .Select(p => ToPlayerDtoFromSquad(p, team))
+            .Where(p => p.Id > 0)
+            .ToList() ?? [];
+
+        return new TeamRosterDto
+        {
+            TeamId = team.Id,
+            TeamName = team.Name ?? string.Empty,
+            TeamLogoUrl = team.Logo,
+            Season = season,
+            Players = players,
+        };
+    }
+
+    public static PlayerDto ToPlayerDtoFromSquad(ApiSportsSquadPlayer player, ApiSportsTeamSide? team) =>
+        new()
+        {
+            Id = player.Id,
+            Name = player.Name ?? string.Empty,
+            Age = player.Age,
+            PhotoUrl = player.Photo,
+            TeamId = team?.Id,
+            TeamName = team?.Name,
+            TeamLogoUrl = team?.Logo,
+            Position = player.Position,
+            Number = player.Number,
+        };
+
+    public static PlayerDto? ToPlayerDto(ApiSportsPlayerProfileItem item)
+    {
+        var player = item.Player;
+        if (player is null || player.Id <= 0)
+        {
+            return null;
+        }
+
+        var stats = item.Statistics?.FirstOrDefault();
+        var team = stats?.Team;
+
+        return new PlayerDto
+        {
+            Id = player.Id,
+            Name = player.Name ?? string.Empty,
+            FirstName = player.Firstname,
+            LastName = player.Lastname,
+            Age = player.Age,
+            BirthDate = player.Birth?.Date,
+            Nationality = player.Nationality,
+            Height = player.Height,
+            Weight = player.Weight,
+            PhotoUrl = player.Photo,
+            TeamId = team?.Id,
+            TeamName = team?.Name,
+            TeamLogoUrl = team?.Logo,
+            Position = stats?.Games?.Position,
+            Number = stats?.Games?.Number,
+        };
+    }
 
     private static string? FormatStatValue(object? value) =>
         value switch

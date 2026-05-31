@@ -29,6 +29,10 @@ public sealed class ApiSportsFootballClient(
         return GetAsync<ApiSportsLeagueItem>("leagues", query, cancellationToken);
     }
 
+    public Task<IReadOnlyList<ApiSportsCountryItem>> GetCountriesAsync(
+        CancellationToken cancellationToken = default) =>
+        GetAsync<ApiSportsCountryItem>("countries", new Dictionary<string, string?>(), cancellationToken);
+
     public Task<IReadOnlyList<ApiSportsFixtureItem>> GetFixturesAsync(
         IReadOnlyDictionary<string, string?> query,
         CancellationToken cancellationToken = default) =>
@@ -67,6 +71,19 @@ public sealed class ApiSportsFootballClient(
         IReadOnlyDictionary<string, string?> query,
         CancellationToken cancellationToken = default) =>
         GetAsync<ApiSportsTeamItem>("teams", query, cancellationToken);
+
+    public Task<IReadOnlyList<ApiSportsSquadItem>> GetSquadsAsync(
+        int teamId,
+        CancellationToken cancellationToken = default) =>
+        GetAsync<ApiSportsSquadItem>(
+            "players/squads",
+            new Dictionary<string, string?> { ["team"] = teamId.ToString() },
+            cancellationToken);
+
+    public Task<IReadOnlyList<ApiSportsPlayerProfileItem>> GetPlayersAsync(
+        IReadOnlyDictionary<string, string?> query,
+        CancellationToken cancellationToken = default) =>
+        GetAsync<ApiSportsPlayerProfileItem>("players", query, cancellationToken);
 
     private async Task<IReadOnlyList<T>> GetAsync<T>(
         string path,

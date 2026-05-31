@@ -20,17 +20,23 @@ import {
   useGetTodayFootballScoresQuery,
 } from '../services/scoreGuruApi'
 
-const DEFAULT_SEASON = 2024
+import {
+  formatFootballSeasonLabel,
+  getCurrentFootballSeasonYear,
+  getFootballSeasonOptions,
+  SEASON_UNAVAILABLE_HINT,
+} from '../features/scores/seasonUtils'
 
 export function LeagueDetailsPage() {
+  const defaultSeason = getCurrentFootballSeasonYear()
   const { leagueId = '' } = useParams<{ leagueId: string }>()
   const leagueNum = Number.parseInt(leagueId, 10)
   const [tab, setTab] = useState('games')
-  const [season, setSeason] = useState(String(DEFAULT_SEASON))
+  const [season, setSeason] = useState(String(defaultSeason))
   const [selectedDate, setSelectedDate] = useState(todayDateString)
   const seasonNum = Number.parseInt(season, 10)
 
-  const leaguesQuery = useGetFootballLeaguesQuery({ season: DEFAULT_SEASON })
+  const leaguesQuery = useGetFootballLeaguesQuery({ season: defaultSeason })
   const league = leaguesQuery.data?.find((l) => l.id === leagueNum)
 
   const todayQuery = useGetTodayFootballScoresQuery(
@@ -115,7 +121,7 @@ export function LeagueDetailsPage() {
             {league?.country ?? 'Football'}
           </p>
           <p className="font-inter text-xs text-cr-muted">
-            Season default: {DEFAULT_SEASON}
+            Season default: {formatFootballSeasonLabel(defaultSeason)}
           </p>
         </div>
       </Card>
@@ -159,7 +165,7 @@ function StandingsTab({
   }
 
   if (!standingsQuery.data) {
-    return <EmptyState title="No standings" description="No table data for this league and season." />
+    return <EmptyState title="No standings" description={`No table data for this league and season. ${SEASON_UNAVAILABLE_HINT}`} />
   }
 
   return (
@@ -220,7 +226,7 @@ function TeamsTab({
         lastUpdatedMs={teamsQuery.fulfilledTimeStamp}
       />
       {teams.length === 0 ? (
-        <EmptyState title="No teams" description="No teams returned for this league and season." />
+        <EmptyState title="No teams" description={`No teams found for this league and season. ${SEASON_UNAVAILABLE_HINT}`} />
       ) : (
         <div className="grid gap-2 sm:grid-cols-2">
           {teams.map((t: TeamDto) => (
@@ -240,20 +246,30 @@ function TeamsTab({
 }
 
 function SeasonFilter({ season, setSeason }: { season: string; setSeason: (v: string) => void }) {
+  const seasonNum = Number.parseInt(season, 10)
+  const options = getFootballSeasonOptions(4)
+
   return (
-    <label className="flex max-w-xs flex-col gap-1">
+    <label className="flex max-w-xs flex-col gap-1.5">
       <span className="font-inter text-xs font-semibold text-cr-text-dark dark:text-cr-text-light">
         Season
       </span>
-      <input
-        type="text"
-        inputMode="numeric"
+      <select
         value={season}
         onChange={(e) => setSeason(e.target.value)}
         className="min-h-10 rounded-lg border border-cr-border-light bg-cr-surface-light px-3 font-inter text-sm dark:border-cr-border-dark dark:bg-cr-surface-dark dark:text-cr-text-light"
-      />
+      >
+        {options.map((option) => (
+          <option key={option.value} value={String(option.value)}>
+            {option.label}
+          </option>
+        ))}
+        {!options.some((o) => String(o.value) === season) && Number.isFinite(seasonNum) ? (
+          <option value={season}>{formatFootballSeasonLabel(seasonNum)}</option>
+        ) : null}
+      </select>
       <span className="font-inter text-[11px] text-cr-muted dark:text-cr-muted-dark">
-        Required for standings and teams (e.g. 2024).
+        API season {season}. Defaults to {formatFootballSeasonLabel(getCurrentFootballSeasonYear())}.
       </span>
     </label>
   )

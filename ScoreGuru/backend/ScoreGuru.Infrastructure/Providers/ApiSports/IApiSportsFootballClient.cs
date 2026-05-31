@@ -9,6 +9,9 @@ public interface IApiSportsFootballClient
         int? season,
         CancellationToken cancellationToken = default);
 
+    Task<IReadOnlyList<ApiSportsCountryItem>> GetCountriesAsync(
+        CancellationToken cancellationToken = default);
+
     Task<IReadOnlyList<ApiSportsFixtureItem>> GetFixturesAsync(
         IReadOnlyDictionary<string, string?> query,
         CancellationToken cancellationToken = default);
@@ -27,6 +30,14 @@ public interface IApiSportsFootballClient
         CancellationToken cancellationToken = default);
 
     Task<IReadOnlyList<ApiSportsTeamItem>> GetTeamsAsync(
+        IReadOnlyDictionary<string, string?> query,
+        CancellationToken cancellationToken = default);
+
+    Task<IReadOnlyList<ApiSportsSquadItem>> GetSquadsAsync(
+        int teamId,
+        CancellationToken cancellationToken = default);
+
+    Task<IReadOnlyList<ApiSportsPlayerProfileItem>> GetPlayersAsync(
         IReadOnlyDictionary<string, string?> query,
         CancellationToken cancellationToken = default);
 }

@@ -1,46 +1,66 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PageContainer } from '../components/layout/PageContainer'
+import { CountryLeagueSeasonSelector } from '../components/shared/CountryLeagueSeasonSelector'
 import { Card } from '../components/shared/Card'
 import { EmptyState } from '../components/shared/EmptyState'
+import { RefreshControl } from '../components/shared/RefreshControl'
 import { Skeleton } from '../components/shared/Skeleton'
+import { getPremierLeaguePreset } from '../features/scores/leaguePresets'
+import {
+  formatFootballSeasonLabel,
+  getPreviousFootballSeasonYear,
+  NO_LEAGUES_EMPTY_DESCRIPTION,
+} from '../features/scores/seasonUtils'
 import { useGetFootballLeaguesQuery } from '../services/scoreGuruApi'
 
 export function LeaguesPage() {
-  const [country, setCountry] = useState('')
-  const [season, setSeason] = useState('2024')
+  const preset = getPremierLeaguePreset()
+  const [country, setCountry] = useState<string>(preset.country)
+  const [season, setSeason] = useState(preset.season)
 
-  const seasonNum = season.trim() ? Number.parseInt(season, 10) : undefined
-  const { data, isLoading, isError, refetch } = useGetFootballLeaguesQuery({
-    country: country.trim() || undefined,
-    season: Number.isFinite(seasonNum) ? seasonNum : undefined,
-  })
+  const seasonNum = Number.parseInt(season, 10)
+  const validSeason = Number.isFinite(seasonNum)
 
-  const leagues = data ?? []
+  const { data, isLoading, isError, refetch, isFetching, fulfilledTimeStamp } =
+    useGetFootballLeaguesQuery({
+      country: country.trim() || undefined,
+      season: validSeason ? seasonNum : undefined,
+    })
+
+  const leagues = useMemo(() => {
+    const list = [...(data ?? [])]
+    list.sort((a, b) => a.name.localeCompare(b.name))
+    return list
+  }, [data])
+
+  const tryPreviousSeason = () => {
+    if (!validSeason) return
+    setSeason(String(getPreviousFootballSeasonYear(seasonNum)))
+  }
 
   return (
-    <PageContainer title="Leagues" description="Browse football leagues from ScoreGuru.">
-      <div className="mb-6 flex flex-wrap gap-3">
-        <label className="flex flex-col gap-1 font-inter text-xs font-medium text-cr-muted dark:text-cr-muted-dark">
-          Country
-          <input
-            type="text"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            placeholder="e.g. England"
-            className="min-h-10 rounded-lg border border-cr-border-light bg-cr-surface-light px-3 text-sm text-cr-text-dark dark:border-cr-border-dark dark:bg-cr-surface-dark dark:text-cr-text-light"
-          />
-        </label>
-        <label className="flex flex-col gap-1 font-inter text-xs font-medium text-cr-muted dark:text-cr-muted-dark">
-          Season
-          <input
-            type="text"
-            value={season}
-            onChange={(e) => setSeason(e.target.value)}
-            placeholder="2024"
-            className="w-24 min-h-10 rounded-lg border border-cr-border-light bg-cr-surface-light px-3 text-sm text-cr-text-dark dark:border-cr-border-dark dark:bg-cr-surface-dark dark:text-cr-text-light"
-          />
-        </label>
+    <PageContainer
+      title="Leagues"
+      description="Browse football leagues by country and season."
+      actions={
+        <RefreshControl
+          onRefresh={() => void refetch()}
+          isRefreshing={isFetching}
+          lastUpdatedMs={fulfilledTimeStamp}
+        />
+      }
+    >
+      <div className="mb-6">
+        <CountryLeagueSeasonSelector
+          country={country}
+          leagueId={preset.league}
+          season={season}
+          onCountryChange={setCountry}
+          onSeasonChange={setSeason}
+          showLeagueSelect={false}
+          showPreset={false}
+        />
       </div>
 
       {isLoading ? (
@@ -52,12 +72,19 @@ export function LeaguesPage() {
       ) : isError ? (
         <EmptyState
           title="Could not load leagues"
-          description="Check that the API is running."
+          description="Check that the API is running and try again."
           actionLabel="Try again"
-          onAction={refetch}
+          onAction={() => void refetch()}
+          secondaryActionLabel="Try previous season"
+          onSecondaryAction={tryPreviousSeason}
         />
       ) : leagues.length === 0 ? (
-        <EmptyState title="No leagues found" description="Try different country or season filters." />
+        <EmptyState
+          title="No leagues found"
+          description={NO_LEAGUES_EMPTY_DESCRIPTION}
+          secondaryActionLabel="Try previous season"
+          onSecondaryAction={tryPreviousSeason}
+        />
       ) : (
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {leagues.map((league) => (
@@ -75,7 +102,9 @@ export function LeaguesPage() {
                     {league.name}
                   </p>
                   <p className="font-inter text-xs text-cr-muted dark:text-cr-muted-dark">
-                    {[league.country, league.season].filter(Boolean).join(' · ')}
+                    {[league.country, league.season ? formatFootballSeasonLabel(league.season) : null]
+                      .filter(Boolean)
+                      .join(' · ')}
                   </p>
                 </div>
               </Card>

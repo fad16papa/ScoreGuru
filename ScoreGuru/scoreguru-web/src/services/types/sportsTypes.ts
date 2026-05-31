@@ -3,6 +3,12 @@ export type SportDto = {
   name: string
 }
 
+export type CountryDto = {
+  name: string
+  code: string | null
+  flagUrl: string | null
+}
+
 export type LeagueDto = {
   id: number
   name: string
@@ -129,4 +135,49 @@ export type FootballTeamsParams = {
   league?: number
   season?: number
   country?: string
+}
+
+export type PlayerDto = {
+  id: number
+  name: string
+  firstName: string | null
+  lastName: string | null
+  age: number | null
+  birthDate: string | null
+  nationality: string | null
+  height: string | null
+  weight: string | null
+  photoUrl: string | null
+  teamId: number | null
+  teamName: string | null
+  teamLogoUrl: string | null
+  position: string | null
+  number: number | null
+}
+
+export type TeamRosterDto = {
+  teamId: number
+  teamName: string
+  teamLogoUrl: string | null
+  season: number | null
+  players: PlayerDto[]
+}
+
+export type FootballTeamRosterParams = {
+  teamId: number
+  season?: number
+}
+
+export type FootballPlayersParams = {
+  team?: number
+  league?: number
+  season?: number
+  search?: string
+}
+
+export type FootballPlayerByIdParams = {
+  playerId: number
+  season?: number
+  team?: number
+  league?: number
 }

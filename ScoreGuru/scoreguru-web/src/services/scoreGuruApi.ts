@@ -6,15 +6,21 @@ import type {
   UserProfileDto,
 } from './types/profileTypes'
 import type {
+  CountryDto,
   FootballLeaguesParams,
+  FootballPlayersParams,
+  FootballPlayerByIdParams,
   FootballStandingsParams,
+  FootballTeamRosterParams,
   FootballTeamsParams,
   GameDetailsDto,
   GameSummaryDto,
   LeagueDto,
   LeagueStandingsDto,
+  PlayerDto,
   SportDto,
   TeamDto,
+  TeamRosterDto,
   TodayFootballScoresParams,
 } from './types/sportsTypes'
 import { scoreGuruBaseQuery } from './scoreGuruBaseQuery'
@@ -61,6 +67,10 @@ export const scoreGuruApi = createApi({
       }),
       providesTags: ['Football'],
     }),
+    getFootballCountries: build.query<CountryDto[], void>({
+      query: () => '/football/countries',
+      providesTags: ['Football'],
+    }),
     getLiveFootballScores: build.query<GameSummaryDto[], void>({
       query: () => '/football/scores/live',
       providesTags: ['Football'],
@@ -92,6 +102,35 @@ export const scoreGuruApi = createApi({
       }),
       providesTags: ['Football'],
     }),
+    getFootballTeamRoster: build.query<TeamRosterDto, FootballTeamRosterParams>({
+      query: ({ teamId, season }) => ({
+        url: `/football/teams/${teamId}/players`,
+        params: season !== undefined ? { season } : {},
+      }),
+      providesTags: (_result, _error, { teamId, season }) => [
+        { type: 'Football', id: `roster-${teamId}-${season ?? 'default'}` },
+      ],
+    }),
+    getFootballPlayers: build.query<PlayerDto[], FootballPlayersParams | void>({
+      query: (params) => ({
+        url: '/football/players',
+        params: params ?? {},
+      }),
+      providesTags: ['Football'],
+    }),
+    getFootballPlayerById: build.query<PlayerDto, FootballPlayerByIdParams>({
+      query: ({ playerId, season, team, league }) => ({
+        url: `/football/players/${playerId}`,
+        params: {
+          ...(season !== undefined ? { season } : {}),
+          ...(team !== undefined ? { team } : {}),
+          ...(league !== undefined ? { league } : {}),
+        },
+      }),
+      providesTags: (_result, _error, { playerId, season, team, league }) => [
+        { type: 'Football', id: `player-${playerId}-${season ?? '_'}_${team ?? '_'}_${league ?? '_'}` },
+      ],
+    }),
   }),
 })
 
@@ -102,9 +141,13 @@ export const {
   useUpdateMyThemeMutation,
   useGetSportsQuery,
   useGetFootballLeaguesQuery,
+  useGetFootballCountriesQuery,
   useGetLiveFootballScoresQuery,
   useGetTodayFootballScoresQuery,
   useGetFootballGameDetailsQuery,
   useGetFootballStandingsQuery,
   useGetFootballTeamsQuery,
+  useGetFootballTeamRosterQuery,
+  useGetFootballPlayersQuery,
+  useGetFootballPlayerByIdQuery,
 } = scoreGuruApi

@@ -11,6 +11,9 @@ Football score UI calls **only** the ScoreGuru .NET API via RTK Query. It never 
 | `/leagues/:id` | League games, standings, teams |
 | `/standings` | Full table |
 | `/games/:id` | Game details |
+| `/teams` | Team directory by league and season |
+| `/teams/:id` | Basic team profile (roster + today's fixtures) |
+| `/players` | Player search/list |
 
 ## API quota protection (Phase 6B)
 
@@ -79,9 +82,31 @@ Monitor usage in the [API-FOOTBALL dashboard](https://dashboard.api-football.com
 
 `DateSelector` uses native `type="date"` (`yyyy-MM-dd`) for schedule/today score queries on Home, Live Scores (non-live segments), and League Details games tab.
 
-## Standings filters
+## Country, league, and season filters (Phase 7C.2)
 
-Standings and league tabs use numeric **League ID** and **Season** with a **Premier League preset** (39 / 2024) for mock and dev.
+Filter controls on Leagues, Teams, Players, Standings, and Team Details use **`CountryLeagueSeasonSelector`**:
+
+- **Country** dropdown from `GET /api/football/countries` (built-in fallback list if the request fails).
+- **League** dropdown by **name** from `GET /api/football/leagues` for the selected country and season.
+- **`leagueId` is internal** — users never type league ids in normal UI.
+- **Season** dropdown shows labels like **`2025/26`**; API calls send the **starting year** (`2025`).
+- **Default preset:** England · Premier League · current football season (`getCurrentFootballSeasonYear()`).
+- **Premier League preset** button resets country, league, and season to those defaults.
+- **Manual league id** appears only under a collapsed **Advanced** section when league lookup fails (developer/debug fallback).
+
+Empty states on Teams, Standings, and Leagues include **Try previous season** when the latest season may not be published yet.
+
+League Details keeps the league from the URL (`/leagues/:id`) and exposes **season** on standings and teams tabs only.
+
+### Football season examples
+
+| Today | `getCurrentFootballSeasonYear()` | UI label |
+|-------|----------------------------------|----------|
+| May 2026 | 2025 | 2025/26 |
+| August 2026 | 2026 | 2026/27 |
+| January 2026 | 2025 | 2025/26 |
+
+Premier League **2025/26** uses API season value **`2025`** internally.
 
 ## Developer diagnostics
 

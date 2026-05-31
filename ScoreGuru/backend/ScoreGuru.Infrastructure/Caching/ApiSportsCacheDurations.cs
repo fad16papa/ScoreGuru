@@ -14,7 +14,13 @@ public static class ApiSportsCacheDurations
 
     public static readonly TimeSpan Leagues = TimeSpan.FromHours(12);
 
+    public static readonly TimeSpan Countries = TimeSpan.FromHours(24);
+
     public static readonly TimeSpan Teams = TimeSpan.FromHours(12);
+
+    public static readonly TimeSpan TeamRoster = TimeSpan.FromHours(12);
+
+    public static readonly TimeSpan Players = TimeSpan.FromHours(12);
 
     public static TimeSpan ForGameStatus(string? statusShort)
     {

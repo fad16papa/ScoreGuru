@@ -114,4 +114,74 @@ public class FootballDataNormalizerTests
         Assert.Equal(15, dto.GoalDifference);
         Assert.Equal("Promotion", dto.Description);
     }
+
+    [Fact]
+    public void ToTeamRosterDto_MapsSquadPlayers()
+    {
+        var item = new ApiSportsSquadItem
+        {
+            Team = new ApiSportsTeamSide { Id = 33, Name = "Manchester United", Logo = "https://logo.example/team.png" },
+            Players =
+            [
+                new ApiSportsSquadPlayer
+                {
+                    Id = 100,
+                    Name = "Test Player",
+                    Age = 25,
+                    Number = 7,
+                    Position = "Midfielder",
+                    Photo = "https://photo.example/player.png",
+                },
+            ],
+        };
+
+        var roster = FootballDataNormalizer.ToTeamRosterDto(item, 2024);
+
+        Assert.NotNull(roster);
+        Assert.Equal(33, roster!.TeamId);
+        Assert.Equal("Manchester United", roster.TeamName);
+        Assert.Equal(2024, roster.Season);
+        Assert.Single(roster.Players);
+        Assert.Equal(100, roster.Players[0].Id);
+        Assert.Equal("Test Player", roster.Players[0].Name);
+        Assert.Equal("Midfielder", roster.Players[0].Position);
+    }
+
+    [Fact]
+    public void ToPlayerDto_MapsProfileFields()
+    {
+        var item = new ApiSportsPlayerProfileItem
+        {
+            Player = new ApiSportsPlayerInfo
+            {
+                Id = 874,
+                Name = "L. Messi",
+                Firstname = "Lionel",
+                Lastname = "Messi",
+                Age = 36,
+                Nationality = "Argentina",
+                Height = "170 cm",
+                Weight = "72 kg",
+                Birth = new ApiSportsPlayerBirth { Date = "1987-06-24" },
+            },
+            Statistics =
+            [
+                new ApiSportsPlayerStatistics
+                {
+                    Team = new ApiSportsTeamSide { Id = 541, Name = "Barcelona" },
+                    Games = new ApiSportsPlayerGames { Position = "Attacker", Number = 10 },
+                },
+            ],
+        };
+
+        var dto = FootballDataNormalizer.ToPlayerDto(item);
+
+        Assert.NotNull(dto);
+        Assert.Equal(874, dto!.Id);
+        Assert.Equal("Lionel", dto.FirstName);
+        Assert.Equal("Argentina", dto.Nationality);
+        Assert.Equal(541, dto.TeamId);
+        Assert.Equal("Attacker", dto.Position);
+        Assert.Equal(10, dto.Number);
+    }
 }

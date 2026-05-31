@@ -14,14 +14,6 @@ function Placeholder({ title, body }: { title: string; body: string }) {
   )
 }
 
-export function TeamsPage() {
-  return <Placeholder title="Teams" body="Team directory and detail pages stub." />
-}
-
-export function PlayersPage() {
-  return <Placeholder title="Players" body="Player directory and detail pages stub." />
-}
-
 export function FavoritesPage() {
   return (
     <Placeholder

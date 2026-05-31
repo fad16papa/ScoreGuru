@@ -8,6 +8,22 @@ namespace ScoreGuru.Api.Controllers;
 [Route("api/football")]
 public class FootballController(IFootballScoreProvider footballScoreProvider) : ControllerBase
 {
+    [HttpGet("countries")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
+    public async Task<IActionResult> GetCountries(CancellationToken cancellationToken)
+    {
+        try
+        {
+            var countries = await footballScoreProvider.GetCountriesAsync(cancellationToken);
+            return OkWithSource(countries);
+        }
+        catch (SportsDataProviderException ex)
+        {
+            return ProviderProblem(ex);
+        }
+    }
+
     [HttpGet("leagues")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
@@ -146,6 +162,95 @@ public class FootballController(IFootballScoreProvider footballScoreProvider) : 
         {
             var teams = await footballScoreProvider.GetTeamsAsync(league, season, country, cancellationToken);
             return OkWithSource(teams);
+        }
+        catch (SportsDataProviderException ex)
+        {
+            return ProviderProblem(ex);
+        }
+    }
+
+    [HttpGet("teams/{teamId:int}/players")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
+    public async Task<IActionResult> GetTeamRoster(
+        int teamId,
+        [FromQuery] int? season,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            var roster = await footballScoreProvider
+                .GetTeamRosterAsync(teamId, season, cancellationToken);
+
+            if (roster is null)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Title = "Roster not found",
+                    Detail = $"No roster found for team {teamId}.",
+                    Status = StatusCodes.Status404NotFound,
+                });
+            }
+
+            return OkWithSource(roster);
+        }
+        catch (SportsDataProviderException ex)
+        {
+            return ProviderProblem(ex);
+        }
+    }
+
+    [HttpGet("players/{playerId:int}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
+    public async Task<IActionResult> GetPlayer(
+        int playerId,
+        [FromQuery] int? season,
+        [FromQuery] int? team,
+        [FromQuery] int? league,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            var player = await footballScoreProvider
+                .GetPlayerByIdAsync(playerId, season, team, league, cancellationToken);
+
+            if (player is null)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Title = "Player not found",
+                    Detail = $"No player found for id {playerId} with the selected filters.",
+                    Status = StatusCodes.Status404NotFound,
+                });
+            }
+
+            return OkWithSource(player);
+        }
+        catch (SportsDataProviderException ex)
+        {
+            return ProviderProblem(ex);
+        }
+    }
+
+    [HttpGet("players")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
+    public async Task<IActionResult> GetPlayers(
+        [FromQuery] int? team,
+        [FromQuery] int? league,
+        [FromQuery] int? season,
+        [FromQuery] string? search,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            var players = await footballScoreProvider
+                .GetPlayersAsync(team, league, season, search, cancellationToken);
+
+            return OkWithSource(players);
         }
         catch (SportsDataProviderException ex)
         {

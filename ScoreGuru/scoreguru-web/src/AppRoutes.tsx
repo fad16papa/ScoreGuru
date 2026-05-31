@@ -3,20 +3,18 @@ import { ProtectedRoute } from './auth/ProtectedRoute'
 import { AppShell } from './components/layout/AppShell'
 import { GameDetailsPage } from './pages/GameDetailsPage'
 import { LeagueDetailsPage } from './pages/LeagueDetailsPage'
-import {
-  PlayerDetailPlaceholderPage,
-  TeamDetailPlaceholderPage,
-} from './pages/DetailPlaceholderPages'
+import { TeamDetailsPage } from './pages/TeamDetailsPage'
+import { PlayerDetailsPage } from './pages/PlayerDetailsPage'
 import { HomePage } from './pages/HomePage'
 import {
   FavoritesPage,
   LeaguesPage,
   LiveScoresPage,
-  PlayersPage,
   SearchPage,
   StandingsPage,
-  TeamsPage,
 } from './pages/MvpPages'
+import { PlayersPage } from './pages/PlayersPage'
+import { TeamsPage } from './pages/TeamsPage'
 import { NotFoundPage } from './pages/NotFoundPage'
 import { SettingsPage } from './pages/SettingsPage'
 import { SignInPage } from './pages/SignInPage'
@@ -38,8 +36,8 @@ export function AppRoutes() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/games/:gameId" element={<GameDetailsPage />} />
         <Route path="/leagues/:leagueId" element={<LeagueDetailsPage />} />
-        <Route path="/teams/:teamId" element={<TeamDetailPlaceholderPage />} />
-        <Route path="/players/:playerId" element={<PlayerDetailPlaceholderPage />} />
+        <Route path="/teams/:teamId" element={<TeamDetailsPage />} />
+        <Route path="/players/:playerId" element={<PlayerDetailsPage />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/settings" element={<SettingsPage />} />
